@@ -6,666 +6,626 @@
 <title>MacBook Readiness Programme</title>
 
 <style>
- :root{
-   --navy:#071B3A;
-   --blue:#0A66C2;
-   --blue-dark:#073E8C;
-   --red:#E51F32;
-   --ink:#172033;
-   --muted:#667085;
-   --line:#E4EAF2;
-   --bg:#F5F7FB;
-   --card:#FFFFFF;
-   --soft-blue:#EEF6FF;
-   --soft-red:#FFF3F4;
-   --soft-green:#EEF9F2;
-   --soft-gold:#FFF8E6;
-   --green:#238B45;
-   --gold:#B7791F;
-   --danger:#B42318;
-   --shadow:0 18px 45px rgba(7,27,58,.08);
-   --shadow-soft:0 8px 24px rgba(7,27,58,.06);
-   --radius:24px;
-   --radius-sm:16px;
- }
- *{
-   box-sizing:border-box;
- }
- html{
-   scroll-behavior:smooth;
- }
- body{
-   margin:0;
-   font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-   color:var(--ink);
-   background:
-     radial-gradient(circle at top left, rgba(10,102,194,.16), transparent 34rem),
-     radial-gradient(circle at top right, rgba(229,31,50,.10), transparent 30rem),
-     linear-gradient(180deg,#FFFFFF 0%,#F5F7FB 42%,#EEF2F7 100%);
-   line-height:1.55;
-   font-size:16px;
- }
- a{
-   color:var(--blue);
-   font-weight:700;
-   text-decoration:none;
- }
- a:hover{
-   color:var(--blue-dark);
-   text-decoration:underline;
- }
- code,
- kbd{
-   font-family:"SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
-   background:#F0F4FA;
-   border:1px solid #D8E1EE;
-   padding:2px 7px;
-   border-radius:8px;
-   font-size:.92em;
-   white-space:nowrap;
- }
- .skip{
-   position:absolute;
-   left:-10000px;
-   top:auto;
-   width:1px;
-   height:1px;
-   overflow:hidden;
- }
- .skip:focus{
-   position:fixed;
-   left:16px;
-   top:16px;
-   width:auto;
-   height:auto;
-   z-index:9999;
-   background:#000;
-   color:#fff;
-   padding:10px 14px;
-   border-radius:10px;
- }
- .wrap{
-   width:min(1120px, calc(100% - 32px));
-   margin:0 auto;
-   padding:24px 0;
- }
- header{
-   position:relative;
-   overflow:hidden;
-   background:
-     linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.68)),
-     radial-gradient(circle at 10% 20%, rgba(10,102,194,.18), transparent 22rem),
-     radial-gradient(circle at 90% 0%, rgba(229,31,50,.13), transparent 24rem);
-   border-bottom:1px solid rgba(228,234,242,.9);
-   backdrop-filter:blur(20px);
- }
- header::after{
-   content:"";
-   position:absolute;
-   inset:auto 0 0 0;
-   height:4px;
-   background:linear-gradient(90deg,var(--red),var(--blue));
- }
- .topbar{
-   display:flex;
-   align-items:flex-start;
-   justify-content:space-between;
-   gap:24px;
-   flex-wrap:wrap;
- }
- .titleblock{
-   max-width:780px;
- }
- .titleblock h1{
-   margin:0;
-   color:var(--navy);
-   font-size:clamp(2.3rem, 5vw, 4.4rem);
-   line-height:.98;
-   letter-spacing:-.055em;
-   font-weight:850;
- }
- .subtitle{
-   margin:18px 0 0;
-   color:#344054;
-   font-size:clamp(1.05rem, 2vw, 1.35rem);
-   max-width:720px;
- }
- .header-actions,
- .row{
-   display:flex;
-   gap:10px;
-   flex-wrap:wrap;
-   align-items:center;
- }
- .btn{
-   appearance:none;
-   border:1px solid #D7DFEA;
-   background:rgba(255,255,255,.92);
-   color:var(--ink);
-   border-radius:999px;
-   padding:10px 16px;
-   min-height:42px;
-   cursor:pointer;
-   font-weight:800;
-   display:inline-flex;
-   align-items:center;
-   justify-content:center;
-   gap:8px;
-   box-shadow:0 3px 10px rgba(7,27,58,.04);
-   transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
- }
- .btn:hover{
-   transform:translateY(-1px);
-   box-shadow:0 12px 24px rgba(7,27,58,.10);
-   text-decoration:none;
- }
- .btn.primary{
-   color:#fff;
-   border:none;
-   background:linear-gradient(135deg,var(--blue),#3D8BFF);
- }
- .btn.ghost{
-   background:rgba(255,255,255,.65);
- }
- .btn.danger{
-   color:var(--danger);
-   border-color:#F3C8C5;
-   background:#FFF7F7;
- }
- .btn.small{
-   min-height:36px;
-   padding:8px 12px;
-   font-size:.92rem;
- }
- .btn:disabled{
-   opacity:.45;
-   cursor:not-allowed;
-   transform:none;
-   box-shadow:none;
- }
- .progress-shell{
-   margin-top:26px;
-   background:rgba(255,255,255,.82);
-   border:1px solid rgba(228,234,242,.9);
-   border-radius:22px;
-   padding:16px;
-   box-shadow:var(--shadow-soft);
- }
- .progress-top{
-   display:flex;
-   align-items:center;
-   justify-content:space-between;
-   gap:12px;
-   flex-wrap:wrap;
- }
- .progress{
-   margin-top:12px;
-   height:12px;
-   border-radius:999px;
-   background:#E8EEF6;
-   overflow:hidden;
- }
- .progress>div{
-   height:100%;
-   border-radius:999px;
-   background:linear-gradient(90deg,var(--red),var(--blue));
-   transition:width .4s ease, inset .4s ease;
- }
- #progressBar{
-   display:block;
- }
- .pill{
-   display:inline-flex;
-   align-items:center;
-   gap:8px;
-   border-radius:999px;
-   padding:7px 12px;
-   background:#EEF6FF;
-   color:#084B91;
-   border:1px solid #D7E9FF;
-   font-weight:850;
-   font-size:.9rem;
-   width:max-content;
- }
- .pill.dark{
-   background:var(--navy);
-   color:#fff;
-   border-color:var(--navy);
- }
- .pill.ok{
-   background:var(--soft-green);
-   color:var(--green);
-   border-color:#CDEED8;
- }
- .pill.warn{
-   background:var(--soft-gold);
-   color:#8A5A00;
-   border-color:#F5D58A;
- }
- .pill.danger{
-   background:var(--soft-red);
-   color:var(--danger);
-   border-color:#F2C8C6;
- }
- nav{
-   position:sticky;
-   top:0;
-   z-index:50;
-   background:rgba(245,247,251,.82);
-   backdrop-filter:blur(18px);
-   border-bottom:1px solid rgba(228,234,242,.9);
- }
- nav .wrap{
-   display:flex;
-   gap:8px;
-   overflow-x:auto;
-   padding:12px 0;
-   scrollbar-width:none;
- }
- nav .wrap::-webkit-scrollbar{
-   display:none;
- }
- nav a{
-   white-space:nowrap;
-   background:#fff;
-   color:#344054;
-   border:1px solid #E1E8F0;
-   border-radius:999px;
-   padding:8px 13px;
-   font-size:.9rem;
-   box-shadow:0 3px 10px rgba(7,27,58,.04);
- }
- nav a:hover{
-   color:var(--blue);
-   text-decoration:none;
-   border-color:#BFD9F8;
- }
- main{
-   padding-top:18px;
- }
- .section{
-   scroll-margin-top:90px;
-   margin-top:22px;
- }
- .hero{
-   display:grid;
-   gap:22px;
-   align-items:stretch;
- }
- @media (min-width:900px){
-   .hero{
-     grid-template-columns:1.25fr .75fr;
-   }
- }
- .card{
-   background:rgba(255,255,255,.92);
-   border:1px solid rgba(228,234,242,.95);
-   border-radius:var(--radius);
-   box-shadow:var(--shadow);
-   padding:clamp(20px, 3vw, 32px);
-   position:relative;
-   overflow:hidden;
- }
- .card::before{
-   content:"";
-   position:absolute;
-   inset:0;
-   pointer-events:none;
-   background:linear-gradient(180deg,rgba(255,255,255,.6),transparent 34%);
- }
- .card>*{
-   position:relative;
- }
- .card h2{
-   margin:0 0 12px;
-   color:var(--navy);
-   font-size:clamp(1.55rem, 3vw, 2.25rem);
-   line-height:1.08;
-   letter-spacing:-.035em;
- }
- .card h3{
-   margin:0 0 10px;
-   color:#101828;
-   font-size:1.15rem;
-   letter-spacing:-.015em;
- }
- .lead{
-   font-size:1.14rem;
-   color:#344054;
- }
- .muted{
-   color:var(--muted);
- }
- .small{
-   font-size:.92rem;
- }
- .section-title{
-   display:flex;
-   align-items:center;
-   justify-content:space-between;
-   gap:12px;
-   flex-wrap:wrap;
-   margin-bottom:16px;
- }
- .section-title h2{
-   margin:0;
- }
- .grid{
-   display:grid;
-   gap:16px;
- }
- @media (min-width:820px){
-   .grid.two{
-     grid-template-columns:1fr 1fr;
-   }
-   .grid.three{
-     grid-template-columns:repeat(3,1fr);
-   }
- }
- .mini-card,
- .scenario-card,
- .scoreitem{
-   background:#fff;
-   border:1px solid #E4EAF2;
-   border-radius:var(--radius-sm);
-   padding:18px;
-   box-shadow:var(--shadow-soft);
- }
- .callout,
- .challenge,
- .dangerbox{
-   border-radius:18px;
-   padding:15px 16px;
-   margin:14px 0;
-   border:1px solid;
- }
- .callout{
-   background:var(--soft-blue);
-   border-color:#D7E9FF;
-   color:#123A63;
- }
- .challenge{
-   background:var(--soft-gold);
-   border-color:#F5D58A;
-   color:#5F4200;
- }
- .dangerbox{
-   background:var(--soft-red);
-   border-color:#F4C5C5;
-   color:#7A271A;
- }
- .checklist{
-   display:grid;
-   gap:10px;
-   margin:14px 0;
- }
- .check{
-   display:flex;
-   align-items:flex-start;
-   gap:12px;
-   padding:13px 14px;
-   border-radius:16px;
-   background:#FBFCFE;
-   border:1px solid #E3EAF3;
-   transition:transform .16s ease, background .16s ease, border-color .16s ease;
- }
- .check:hover{
-   transform:translateY(-1px);
-   border-color:#C8D8EA;
- }
- .check input{
-   margin-top:4px;
-   width:18px;
-   height:18px;
-   accent-color:var(--blue);
-   flex:0 0 auto;
- }
- .check.done{
-   background:var(--soft-green);
-   border-color:#CDEED8;
- }
- textarea,
- input[type="text"]{
-   width:100%;
-   border:1px solid #D7DFEA;
-   background:#fff;
-   border-radius:16px;
-   padding:13px 14px;
-   font:inherit;
-   box-shadow:inset 0 1px 2px rgba(7,27,58,.03);
- }
- textarea{
-   min-height:100px;
-   resize:vertical;
- }
- textarea:focus,
- input[type="text"]:focus{
-   outline:none;
-   border-color:#8BC0FF;
-   box-shadow:0 0 0 4px rgba(10,102,194,.12);
- }
- .scorebox{
-   display:grid;
-   gap:12px;
-   margin:16px 0;
- }
- @media (min-width:760px){
-   .scorebox{
-     grid-template-columns:repeat(3,1fr);
-   }
- }
- .scoreitem strong{
-   display:block;
-   font-size:1.75rem;
-   line-height:1;
-   color:var(--navy);
-   margin-bottom:6px;
-   letter-spacing:-.03em;
- }
- .gesture-grid{
-   display:grid;
-   gap:12px;
-   margin:14px 0;
- }
- @media (min-width:720px){
-   .gesture-grid{
-     grid-template-columns:repeat(3,1fr);
-   }
- }
- .gesture{
-   text-align:center;
-   background:#fff;
-   border:1px solid #E4EAF2;
-   border-radius:18px;
-   padding:16px;
- }
- .gesture svg{
-   width:100%;
-   max-width:180px;
-   height:112px;
- }
- .reference-img{
-   width:100%;
-   display:block;
-   border-radius:18px;
-   border:1px solid #E4EAF2;
-   background:#F4F7FB;
-   box-shadow:var(--shadow-soft);
- }
- .missing-image .reference-img{
-   display:none;
- }
- .image-fallback{
-   display:none;
- }
- .missing-image .image-fallback{
-   display:block;
-   padding:16px;
-   border-radius:16px;
-   background:var(--soft-gold);
-   border:1px solid #F5D58A;
- }
- table{
-   border-collapse:separate;
-   border-spacing:0;
-   overflow:hidden;
-   border-radius:16px;
-   border:1px solid #E4EAF2;
-   background:#fff;
- }
- th,
- td{
-   padding:12px;
-   border-bottom:1px solid #E4EAF2;
- }
- tr:last-child td{
-   border-bottom:none;
- }
- th{
-   background:#F8FAFC;
-   color:#344054;
- }
- .scenario-toolbar{
-   display:flex;
-   align-items:center;
-   justify-content:space-between;
-   gap:12px;
-   flex-wrap:wrap;
-   margin:14px 0;
- }
- .scenario-grid{
-   display:grid;
-   gap:16px;
- }
- @media (min-width:900px){
-   .scenario-grid{
-     grid-template-columns:repeat(2,1fr);
-   }
- }
- .scenario-card{
-   transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
- }
- .scenario-card:hover{
-   transform:translateY(-2px);
-   box-shadow:0 18px 38px rgba(7,27,58,.10);
- }
- .scenario-card.correct{
-   border-color:#BEE8CC;
-   background:linear-gradient(180deg,#FFFFFF,#F4FCF7);
- }
- .scenario-card.incorrect{
-   border-color:#F1C0BD;
-   background:linear-gradient(180deg,#FFFFFF,#FFF6F6);
- }
- .scenario-options{
-   display:grid;
-   gap:9px;
-   margin-top:14px;
- }
- .scenario-options .btn{
-   justify-content:flex-start;
-   text-align:left;
-   border-radius:15px;
-   white-space:normal;
- }
- .scenario-options .btn.selected{
-   border-color:var(--blue);
-   box-shadow:0 0 0 4px rgba(10,102,194,.12);
- }
- .feedback{
-   display:none;
-   margin-top:14px;
-   padding:13px 14px;
-   border-radius:15px;
-   border:1px solid;
- }
- .feedback.show{
-   display:block;
- }
- .feedback.good{
-   background:var(--soft-green);
-   border-color:#CDEED8;
-   color:#155724;
- }
- .feedback.bad{
-   background:var(--soft-red);
-   border-color:#F4C5C5;
-   color:#7A271A;
- }
- .final-lock{
-   opacity:.58;
-   filter:grayscale(.18);
- }
- canvas{
-   display:block;
-   width:100%;
-   max-width:680px;
-   border-radius:22px;
-   border:1px solid #E4EAF2;
-   background:#fff;
-   box-shadow:var(--shadow-soft);
- }
- footer{
-   color:var(--muted);
-   padding:24px 0 36px;
-   font-size:.92rem;
- }
- .confetti{
-   position:fixed;
-   inset:0;
-   pointer-events:none;
-   overflow:hidden;
-   z-index:999;
- }
- .confetti span{
-   position:absolute;
-   top:-20px;
-   width:10px;
-   height:14px;
-   border-radius:3px;
-   animation:fall 950ms ease-in forwards;
- }
- @keyframes fall{
-   to{
-     transform:translateY(110vh) rotate(420deg);
-     opacity:.2;
-   }
- }
- @media (max-width:680px){
-   .wrap{
-     width:min(100% - 24px, 1120px);
-     padding:18px 0;
-   }
-   .card{
-     padding:20px;
-     border-radius:20px;
-   }
-   .titleblock h1{
-     font-size:2.45rem;
-   }
-   .subtitle{
-     font-size:1.05rem;
-   }
-   .header-actions{
-     width:100%;
-   }
-   .header-actions .btn{
-     flex:1;
-   }
-   .btn{
-     width:auto;
-   }
-   .scenario-grid{
-     grid-template-columns:1fr;
-   }
- }
- @media (prefers-reduced-motion:reduce){
-   *{
-     scroll-behavior:auto !important;
-     transition:none !important;
-     animation:none !important;
-   }
- }
+  :root{
+    --navy:#071B3A;
+    --blue:#0A66C2;
+    --blue-dark:#073E8C;
+    --red:#E51F32;
+    --ink:#172033;
+    --muted:#667085;
+    --line:#E4EAF2;
+    --bg:#F5F7FB;
+    --card:#FFFFFF;
+    --soft-blue:#EEF6FF;
+    --soft-red:#FFF3F4;
+    --soft-green:#EEF9F2;
+    --soft-gold:#FFF8E6;
+    --green:#238B45;
+    --gold:#B7791F;
+    --danger:#B42318;
+    --shadow:0 18px 45px rgba(7,27,58,.08);
+    --shadow-soft:0 8px 24px rgba(7,27,58,.06);
+    --radius:24px;
+    --radius-sm:16px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at top left, rgba(10,102,194,.16), transparent 34rem),
+      radial-gradient(circle at top right, rgba(229,31,50,.10), transparent 30rem),
+      linear-gradient(180deg,#FFFFFF 0%,#F5F7FB 42%,#EEF2F7 100%);
+    line-height:1.55;
+    font-size:16px;
+  }
+
+  a{ color:var(--blue); font-weight:700; text-decoration:none; }
+  a:hover{ color:var(--blue-dark); text-decoration:underline; }
+
+  code,kbd{
+    font-family:"SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+    background:#F0F4FA;
+    border:1px solid #D8E1EE;
+    padding:2px 7px;
+    border-radius:8px;
+    font-size:.92em;
+    white-space:nowrap;
+  }
+
+  .skip{
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+  }
+
+  .skip:focus{
+    position:fixed;
+    left:16px;
+    top:16px;
+    width:auto;
+    height:auto;
+    z-index:9999;
+    background:#000;
+    color:#fff;
+    padding:10px 14px;
+    border-radius:10px;
+  }
+
+  .wrap{
+    width:min(1120px, calc(100% - 32px));
+    margin:0 auto;
+    padding:24px 0;
+  }
+
+  header{
+    position:relative;
+    overflow:hidden;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.68)),
+      radial-gradient(circle at 10% 20%, rgba(10,102,194,.18), transparent 22rem),
+      radial-gradient(circle at 90% 0%, rgba(229,31,50,.13), transparent 24rem);
+    border-bottom:1px solid rgba(228,234,242,.9);
+    backdrop-filter:blur(20px);
+  }
+
+  header::after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--red),var(--blue));
+  }
+
+  .topbar{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+
+  .titleblock{ max-width:780px; }
+
+  .titleblock h1{
+    margin:0;
+    color:var(--navy);
+    font-size:clamp(2.3rem, 5vw, 4.4rem);
+    line-height:.98;
+    letter-spacing:-.055em;
+    font-weight:850;
+  }
+
+  .subtitle{
+    margin:18px 0 0;
+    color:#344054;
+    font-size:clamp(1.05rem, 2vw, 1.35rem);
+    max-width:720px;
+  }
+
+  .header-actions,.row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+
+  .btn{
+    appearance:none;
+    border:1px solid #D7DFEA;
+    background:rgba(255,255,255,.92);
+    color:var(--ink);
+    border-radius:999px;
+    padding:10px 16px;
+    min-height:42px;
+    cursor:pointer;
+    font-weight:800;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    box-shadow:0 3px 10px rgba(7,27,58,.04);
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
+  }
+
+  .btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 12px 24px rgba(7,27,58,.10);
+    text-decoration:none;
+  }
+
+  .btn.primary{
+    color:#fff;
+    border:none;
+    background:linear-gradient(135deg,var(--blue),#3D8BFF);
+  }
+
+  .btn.ghost{ background:rgba(255,255,255,.65); }
+
+  .btn.danger{
+    color:var(--danger);
+    border-color:#F3C8C5;
+    background:#FFF7F7;
+  }
+
+  .btn.small{
+    min-height:36px;
+    padding:8px 12px;
+    font-size:.92rem;
+  }
+
+  .btn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
+  }
+
+  .progress-shell{
+    margin-top:26px;
+    background:rgba(255,255,255,.82);
+    border:1px solid rgba(228,234,242,.9);
+    border-radius:22px;
+    padding:16px;
+    box-shadow:var(--shadow-soft);
+  }
+
+  .progress-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .progress{
+    margin-top:12px;
+    height:12px;
+    border-radius:999px;
+    background:#E8EEF6;
+    overflow:hidden;
+  }
+
+  .progress>div{
+    width:0%;
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--red),var(--blue));
+    transition:width .4s ease;
+  }
+
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border-radius:999px;
+    padding:7px 12px;
+    background:#EEF6FF;
+    color:#084B91;
+    border:1px solid #D7E9FF;
+    font-weight:850;
+    font-size:.9rem;
+    width:max-content;
+  }
+
+  .pill.dark{ background:var(--navy); color:#fff; border-color:var(--navy); }
+  .pill.ok{ background:var(--soft-green); color:var(--green); border-color:#CDEED8; }
+  .pill.warn{ background:var(--soft-gold); color:#8A5A00; border-color:#F5D58A; }
+  .pill.danger{ background:var(--soft-red); color:var(--danger); border-color:#F2C8C6; }
+
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(245,247,251,.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(228,234,242,.9);
+  }
+
+  nav .wrap{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:12px 0;
+    scrollbar-width:none;
+  }
+
+  nav .wrap::-webkit-scrollbar{ display:none; }
+
+  nav a{
+    white-space:nowrap;
+    background:#fff;
+    color:#344054;
+    border:1px solid #E1E8F0;
+    border-radius:999px;
+    padding:8px 13px;
+    font-size:.9rem;
+    box-shadow:0 3px 10px rgba(7,27,58,.04);
+  }
+
+  nav a:hover{
+    color:var(--blue);
+    text-decoration:none;
+    border-color:#BFD9F8;
+  }
+
+  main{ padding-top:18px; }
+
+  .section{
+    scroll-margin-top:90px;
+    margin-top:22px;
+  }
+
+  .hero{
+    display:grid;
+    gap:22px;
+    align-items:stretch;
+  }
+
+  @media (min-width:900px){
+    .hero{ grid-template-columns:1.25fr .75fr; }
+  }
+
+  .card{
+    background:rgba(255,255,255,.92);
+    border:1px solid rgba(228,234,242,.95);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:clamp(20px, 3vw, 32px);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.6),transparent 34%);
+  }
+
+  .card>*{ position:relative; }
+
+  .card h2{
+    margin:0 0 12px;
+    color:var(--navy);
+    font-size:clamp(1.55rem, 3vw, 2.25rem);
+    line-height:1.08;
+    letter-spacing:-.035em;
+  }
+
+  .card h3{
+    margin:0 0 10px;
+    color:#101828;
+    font-size:1.15rem;
+    letter-spacing:-.015em;
+  }
+
+  .lead{ font-size:1.14rem; color:#344054; }
+  .muted{ color:var(--muted); }
+  .small{ font-size:.92rem; }
+
+  .section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+
+  .section-title h2{ margin:0; }
+
+  .grid{ display:grid; gap:16px; }
+
+  @media (min-width:820px){
+    .grid.two{ grid-template-columns:1fr 1fr; }
+    .grid.three{ grid-template-columns:repeat(3,1fr); }
+  }
+
+  .mini-card,.scenario-card,.scoreitem{
+    background:#fff;
+    border:1px solid #E4EAF2;
+    border-radius:var(--radius-sm);
+    padding:18px;
+    box-shadow:var(--shadow-soft);
+  }
+
+  .callout,.challenge,.dangerbox{
+    border-radius:18px;
+    padding:15px 16px;
+    margin:14px 0;
+    border:1px solid;
+  }
+
+  .callout{ background:var(--soft-blue); border-color:#D7E9FF; color:#123A63; }
+  .challenge{ background:var(--soft-gold); border-color:#F5D58A; color:#5F4200; }
+  .dangerbox{ background:var(--soft-red); border-color:#F4C5C5; color:#7A271A; }
+
+  .checklist{
+    display:grid;
+    gap:10px;
+    margin:14px 0;
+  }
+
+  .check{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:13px 14px;
+    border-radius:16px;
+    background:#FBFCFE;
+    border:1px solid #E3EAF3;
+    transition:transform .16s ease, background .16s ease, border-color .16s ease;
+  }
+
+  .check:hover{ transform:translateY(-1px); border-color:#C8D8EA; }
+
+  .check input{
+    margin-top:4px;
+    width:18px;
+    height:18px;
+    accent-color:var(--blue);
+    flex:0 0 auto;
+  }
+
+  .check.done{ background:var(--soft-green); border-color:#CDEED8; }
+
+  textarea,input[type="text"]{
+    width:100%;
+    border:1px solid #D7DFEA;
+    background:#fff;
+    border-radius:16px;
+    padding:13px 14px;
+    font:inherit;
+    box-shadow:inset 0 1px 2px rgba(7,27,58,.03);
+  }
+
+  textarea{ min-height:100px; resize:vertical; }
+
+  textarea:focus,input[type="text"]:focus{
+    outline:none;
+    border-color:#8BC0FF;
+    box-shadow:0 0 0 4px rgba(10,102,194,.12);
+  }
+
+  .scorebox{
+    display:grid;
+    gap:12px;
+    margin:16px 0;
+  }
+
+  @media (min-width:760px){
+    .scorebox{ grid-template-columns:repeat(3,1fr); }
+  }
+
+  .scoreitem strong{
+    display:block;
+    font-size:1.75rem;
+    line-height:1;
+    color:var(--navy);
+    margin-bottom:6px;
+    letter-spacing:-.03em;
+  }
+
+  .gesture-grid{
+    display:grid;
+    gap:12px;
+    margin:14px 0;
+  }
+
+  @media (min-width:720px){
+    .gesture-grid{ grid-template-columns:repeat(3,1fr); }
+  }
+
+  .gesture{
+    text-align:center;
+    background:#fff;
+    border:1px solid #E4EAF2;
+    border-radius:18px;
+    padding:16px;
+  }
+
+  .gesture svg{ width:100%; max-width:180px; height:112px; }
+
+  .reference-img{
+    width:100%;
+    display:block;
+    border-radius:18px;
+    border:1px solid #E4EAF2;
+    background:#F4F7FB;
+    box-shadow:var(--shadow-soft);
+  }
+
+  .image-fallback{ display:none; }
+
+  .missing-image .reference-img{ display:none; }
+
+  .missing-image .image-fallback{
+    display:block;
+    padding:16px;
+    border-radius:16px;
+    background:var(--soft-gold);
+    border:1px solid #F5D58A;
+  }
+
+  .image-test-list{
+    margin:10px 0 0;
+    padding-left:18px;
+    color:#5F4200;
+    font-size:.9rem;
+  }
+
+  table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    overflow:hidden;
+    border-radius:16px;
+    border:1px solid #E4EAF2;
+    background:#fff;
+  }
+
+  th,td{
+    padding:12px;
+    border-bottom:1px solid #E4EAF2;
+    text-align:left;
+    vertical-align:top;
+  }
+
+  tr:last-child td{ border-bottom:none; }
+  th{ background:#F8FAFC; color:#344054; }
+
+  .scenario-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:14px 0;
+  }
+
+  .scenario-grid{
+    display:grid;
+    gap:16px;
+  }
+
+  @media (min-width:900px){
+    .scenario-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  .scenario-card{
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+
+  .scenario-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 38px rgba(7,27,58,.10);
+  }
+
+  .scenario-card.correct{
+    border-color:#BEE8CC;
+    background:linear-gradient(180deg,#FFFFFF,#F4FCF7);
+  }
+
+  .scenario-card.incorrect{
+    border-color:#F1C0BD;
+    background:linear-gradient(180deg,#FFFFFF,#FFF6F6);
+  }
+
+  .scenario-options{
+    display:grid;
+    gap:9px;
+    margin-top:14px;
+  }
+
+  .scenario-options .btn{
+    justify-content:flex-start;
+    text-align:left;
+    border-radius:15px;
+    white-space:normal;
+  }
+
+  .scenario-options .btn.selected{
+    border-color:var(--blue);
+    box-shadow:0 0 0 4px rgba(10,102,194,.12);
+  }
+
+  .feedback{
+    display:none;
+    margin-top:14px;
+    padding:13px 14px;
+    border-radius:15px;
+    border:1px solid;
+  }
+
+  .feedback.show{ display:block; }
+  .feedback.good{ background:var(--soft-green); border-color:#CDEED8; color:#155724; }
+  .feedback.bad{ background:var(--soft-red); border-color:#F4C5C5; color:#7A271A; }
+
+  .final-lock{
+    opacity:.58;
+    filter:grayscale(.18);
+    pointer-events:none;
+  }
+
+  canvas{
+    display:block;
+    width:100%;
+    max-width:680px;
+    border-radius:22px;
+    border:1px solid #E4EAF2;
+    background:#fff;
+    box-shadow:var(--shadow-soft);
+  }
+
+  footer{
+    color:var(--muted);
+    padding:24px 0 36px;
+    font-size:.92rem;
+  }
+
+  .confetti{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:999;
+  }
+
+  .confetti span{
+    position:absolute;
+    top:-20px;
+    width:10px;
+    height:14px;
+    border-radius:3px;
+    animation:fall 950ms ease-in forwards;
+  }
+
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(420deg); opacity:.2; }
+  }
+
+  @media (max-width:680px){
+    .wrap{ width:min(100% - 24px, 1120px); padding:18px 0; }
+    .card{ padding:20px; border-radius:20px; }
+    .titleblock h1{ font-size:2.45rem; }
+    .subtitle{ font-size:1.05rem; }
+    .header-actions{ width:100%; }
+    .header-actions .btn{ flex:1; }
+    .scenario-grid{ grid-template-columns:1fr; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
+  }
 </style>
 </head>
 
@@ -673,534 +633,527 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <header>
-<div class="wrap">
-<div class="topbar">
-<div class="titleblock">
-<h1>MacBook Readiness Programme</h1>
-<p class="subtitle">
-         Be trusted. Think hard. Create well. Stay in control.
-</p>
-</div>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="titleblock">
+        <h1>MacBook Readiness Programme</h1>
+        <p class="subtitle">Be trusted. Think hard. Create well. Stay in control.</p>
+      </div>
 
-<div class="header-actions">
-<button class="btn ghost" id="copySummaryTop">Copy summary</button>
-<button class="btn danger" id="resetAll">Reset progress</button>
-</div>
-</div>
+      <div class="header-actions">
+        <button class="btn ghost" id="copySummaryTop" type="button">Copy summary</button>
+        <button class="btn danger" id="resetAll" type="button">Reset progress</button>
+      </div>
+    </div>
 
-<div class="progress-shell" aria-label="Readiness progress">
-<div class="progress-top">
-<span class="pill dark" id="readinessStatus">Getting Ready</span>
-<span class="pill" id="progressLabel">0% complete</span>
-</div>
-<div class="progress"><div id="progressBar"></div></div>
-<p class="muted small" style="margin:9px 0 0">
-       Progress saves on this browser only. It does not submit data to the school.
-</p>
-</div>
-</div>
+    <div class="progress-shell" aria-label="Readiness progress">
+      <div class="progress-top">
+        <span class="pill dark" id="readinessStatus">Getting Ready</span>
+        <span class="pill" id="progressLabel">0% complete</span>
+      </div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <p class="muted small" style="margin:9px 0 0">
+        Progress saves on this browser only. It does not submit data to the school.
+      </p>
+    </div>
+  </div>
 </header>
 
 <nav aria-label="Page sections">
-<div class="wrap">
-<a href="#start">Start</a>
-<a href="#learn">Ready to Learn</a>
-<a href="#control">Control</a>
-<a href="#flint">Flint</a>
-<a href="#safe">Safe Use</a>
-<a href="#care">Device Care</a>
-<a href="#balance">Balance</a>
-<a href="#scenarios">Judgement Check</a>
-<a href="#final">Trusted User</a>
-</div>
+  <div class="wrap">
+    <a href="#start">Start</a>
+    <a href="#learn">Ready to Learn</a>
+    <a href="#control">Control</a>
+    <a href="#flint">Flint</a>
+    <a href="#safe">Safe Use</a>
+    <a href="#care">Device Care</a>
+    <a href="#balance">Balance</a>
+    <a href="#scenarios">Judgement Check</a>
+    <a href="#final">Trusted User</a>
+  </div>
 </nav>
 
 <main class="wrap" id="main">
 
-<section class="hero section" id="start">
-<div class="card">
-<span class="pill">Future Thinking · Academic Excellence · Human Potential</span>
-<h2 style="margin-top:14px">This is not really about the MacBook.</h2>
-<p class="lead">
-       It is about becoming a learner who can think, create, collaborate and make good decisions in a digital world.
-</p>
-
-<div class="callout">
-       At Downsend, it is never about the device. It is about the learner.
-</div>
-
-<p>
-       Your MacBook is a powerful learning tool. Used well, it can help you research, design, write,
-       code, create, organise your work and prepare for future study and work.
-</p>
-
-<div class="challenge">
-       Your MacBook is a privilege built on trust. Trust is shown through how you use it.
-</div>
-
-<div class="checklist">
-<label class="check">
-<input type="checkbox" data-check="start-understand">
-<span>I understand that my MacBook is a learning device, not simply a personal entertainment device.</span>
-</label>
-<label class="check">
-<input type="checkbox" data-check="start-purposeful">
-<span>I understand that technology should be used when it improves learning, not just because it is available.</span>
-</label>
-</div>
-
-<a class="btn primary" href="#learn">Start readiness journey</a>
-</div>
-
-<div class="card">
-<h2>Readiness status</h2>
-<p class="muted">
-       Your status updates as you complete checklists, respond to scenarios, and write your personal use plan.
-</p>
-
-<div class="scorebox" style="grid-template-columns:1fr">
-<div class="scoreitem">
-<strong id="heroProgress">0%</strong>
-         Overall completion
-</div>
-<div class="scoreitem">
-<strong id="heroScenario">0/0</strong>
-         Judgement scenarios completed
-</div>
-<div class="scoreitem">
-<strong id="heroFinal">Locked</strong>
-         Trusted Device User
-</div>
-</div>
-</div>
-</section>
-
-<section class="section card" id="learn">
-<div class="section-title">
-<h2>1. Ready to Learn</h2>
-<span class="pill">Workflow</span>
-</div>
-
-<div class="callout">
-     Strong learners are organised. They know where their work is, how to access it and how to submit it.
-</div>
-
-<div class="grid two">
-<div>
-<h3>Set up your learning workflow</h3>
-<div class="checklist">
-<label class="check"><input type="checkbox" data-check="learn-login"> Log in using your school account.</label>
-<label class="check"><input type="checkbox" data-check="learn-onedrive"> Open OneDrive and create subject folders.</label>
-<label class="check"><input type="checkbox" data-check="learn-teams"> Open Teams and locate your classes and assignments.</label>
-<label class="check"><input type="checkbox" data-check="learn-submit"> Upload a file to OneDrive and submit or share it through Teams as instructed.</label>
-<label class="check"><input type="checkbox" data-check="learn-lock"> Practise locking your screen using <kbd>Control</kbd> + <kbd>Command</kbd> + <kbd>Q</kbd>.</label>
-</div>
-</div>
-
-<div>
-<h3>Avoid the common mistake</h3>
-<div class="dangerbox">
-         Do not rely on Desktop or Downloads as your only copy. If your work is not saved properly, you risk losing it.
-</div>
-
-<label for="workflowReflection"><strong>My workflow promise</strong></label>
-<textarea id="workflowReflection" data-reflect="workflow" placeholder="I will keep my work organised by..."></textarea>
-</div>
-</div>
-</section>
-
-<section class="section card" id="control">
-<div class="section-title">
-<h2>2. Control Your MacBook</h2>
-<span class="pill">Efficiency</span>
-</div>
-
-<div class="callout">
-     Efficient learners reduce friction. Your MacBook should work for you.
-</div>
-
-<p>
-     You do not need to use every feature. The goal is to choose gestures and shortcuts that make your learning faster,
-     calmer and more effective.
-</p>
-
-<div class="grid two">
-<div class="mini-card">
-<h3>Adapt your gestures</h3>
-<p>
-         Find these settings here:
-<strong>System Settings → Trackpad</strong>
-</p>
-
-<div class="gesture-grid">
-<div class="gesture">
-<svg viewBox="0 0 200 120" aria-label="Two-finger scroll">
-<rect x="10" y="6" width="180" height="108" rx="12" fill="#eef4ff" stroke="#cfd6e1"/>
-<circle cx="92" cy="64" r="12" fill="#bbb"/>
-<circle cx="112" cy="64" r="12" fill="#bbb"/>
-<path d="M102 28 L102 50" stroke="#0A66C2" stroke-width="4" stroke-linecap="round"/>
-<path d="M96 44 L102 52 L108 44" fill="none" stroke="#0A66C2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-<strong>Two-finger scroll</strong>
-<p class="small muted">Move quickly through pages and documents.</p>
-</div>
-
-<div class="gesture">
-<svg viewBox="0 0 200 120" aria-label="Three-finger swipe">
-<rect x="10" y="6" width="180" height="108" rx="12" fill="#eef4ff" stroke="#cfd6e1"/>
-<circle cx="84" cy="74" r="10" fill="#bbb"/>
-<circle cx="102" cy="74" r="10" fill="#bbb"/>
-<circle cx="120" cy="74" r="10" fill="#bbb"/>
-<path d="M50 44 L150 44" stroke="#0A66C2" stroke-width="4" stroke-linecap="round"/>
-<path d="M140 36 L152 44 L140 52" fill="none" stroke="#0A66C2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-<strong>Three-finger swipe</strong>
-<p class="small muted">Switch spaces or full-screen apps efficiently.</p>
-</div>
-
-<div class="gesture">
-<svg viewBox="0 0 200 120" aria-label="Pinch to zoom">
-<rect x="10" y="6" width="180" height="108" rx="12" fill="#eef4ff" stroke="#cfd6e1"/>
-<circle cx="90" cy="60" r="10" fill="#bbb"/>
-<circle cx="120" cy="60" r="10" fill="#bbb"/>
-<path d="M90 60 L70 40 M120 60 L140 40" stroke="#0A66C2" stroke-width="4" stroke-linecap="round"/>
-</svg>
-<strong>Pinch to zoom</strong>
-<p class="small muted">Read detail more clearly and work precisely.</p>
-</div>
-</div>
-
-<div class="checklist">
-<label class="check"><input type="checkbox" data-check="control-trackpad"> I found Trackpad settings.</label>
-<label class="check"><input type="checkbox" data-check="control-gesture"> I chose at least one gesture that will help me work efficiently.</label>
-</div>
-
-<label for="gestureReflection"><strong>Gesture I will use</strong></label>
-<textarea id="gestureReflection" data-reflect="gesture" placeholder="One gesture I will use is... because..."></textarea>
-</div>
-
-<div class="mini-card">
-<h3>Build shortcut fluency</h3>
-<p>
-         Find more shortcuts here:
-<strong>System Settings → Keyboard → Keyboard Shortcuts</strong>
-</p>
-
-<p class="muted">
-         Choose your personal top five. You are not expected to memorise everything at once.
-</p>
-
-<div class="checklist" id="shortcutChecklist">
-<label class="check"><input type="checkbox" data-check="shortcut-spotlight" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>Space</kbd> — Spotlight search</label>
-<label class="check"><input type="checkbox" data-check="shortcut-tab" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>Tab</kbd> — switch apps</label>
-<label class="check"><input type="checkbox" data-check="shortcut-copy" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>C</kbd> / <kbd>⌘</kbd> + <kbd>V</kbd> — copy and paste</label>
-<label class="check"><input type="checkbox" data-check="shortcut-undo" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>Z</kbd> — undo</label>
-<label class="check"><input type="checkbox" data-check="shortcut-save" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>S</kbd> — save</label>
-<label class="check"><input type="checkbox" data-check="shortcut-find" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>F</kbd> — find</label>
-<label class="check"><input type="checkbox" data-check="shortcut-screenshot" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>5</kbd> — screenshot or record</label>
-<label class="check"><input type="checkbox" data-check="shortcut-lock" data-limit-group="shortcuts"> <kbd>Control</kbd> + <kbd>⌘</kbd> + <kbd>Q</kbd> — lock screen</label>
-</div>
-
-<p class="pill" id="shortcutCount">0 selected</p>
-</div>
-</div>
-
-<div class="mini-card media-frame" style="margin-top:14px">
-<h3>Shortcut reference card</h3>
-<p class="muted">
-       Use this as a reference. You are not expected to learn every shortcut today.
-</p>
-<img
-       class="reference-img"
-       src="MacBook Shortcuts - Downsend.png"
-       alt="MacBook shortcuts reference sheet"
-       onerror="this.closest('.media-frame').classList.add('missing-image')"
-     />
-<div class="image-fallback">
-<strong>Shortcut image not found.</strong>
-       Place <code>MacBook Shortcuts - Downsend.png</code> in the same folder as this HTML file.
-</div>
-</div>
-</section>
-
-<section class="section card" id="flint">
-<div class="section-title">
-<h2>3. Thinking with AI: Flint</h2>
-<span class="pill">AI Literacy</span>
-</div>
-
-<div class="callout">
-     Flint is our approved AI learning tool. It is designed to make you think hard — and when you are thinking hard, you are learning.
-</div>
-
-<div class="grid two">
-<div>
-<h3>Use Flint to support thinking</h3>
-<div class="checklist">
-<label class="check"><input type="checkbox" data-check="flint-explain"> I can use Flint to explain a difficult idea in a different way.</label>
-<label class="check"><input type="checkbox" data-check="flint-quiz"> I can ask Flint to quiz me and check my understanding.</label>
-<label class="check"><input type="checkbox" data-check="flint-feedback"> I can ask Flint for feedback that helps me improve my own work.</label>
-<label class="check"><input type="checkbox" data-check="flint-declare"> I understand that AI use must be transparent and follow school expectations.</label>
-</div>
-</div>
-
-<div>
-<h3>Do not use Flint to avoid thinking</h3>
-<div class="dangerbox">
-         If Flint is doing the thinking, you are not learning.
-</div>
-
-<table style="width:100%; border-collapse:collapse">
-<thead>
-<tr>
-<th style="text-align:left; border-bottom:1px solid #e7ebf0; padding:8px">Good use</th>
-<th style="text-align:left; border-bottom:1px solid #e7ebf0; padding:8px">Poor use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding:8px">“Quiz me on this topic.”</td>
-<td style="padding:8px">“Write my homework.”</td>
-</tr>
-<tr>
-<td style="padding:8px">“Challenge my argument.”</td>
-<td style="padding:8px">“Make it sound like I did more than I did.”</td>
-</tr>
-<tr>
-<td style="padding:8px">“Explain this another way.”</td>
-<td style="padding:8px">“Give me a final answer to submit.”</td>
-</tr>
-</tbody>
-</table>
-
-<label for="flintReflection"><strong>My Flint rule</strong></label>
-<textarea id="flintReflection" data-reflect="flint" placeholder="My rule for using Flint is..."></textarea>
-</div>
-</div>
-</section>
-
-<section class="section card" id="safe">
-<div class="section-title">
-<h2>4. Safe, Responsible and Respectful</h2>
-<span class="pill">Digital Citizenship</span>
-</div>
-
-<div class="callout">
-     You are as responsible for your actions online as you are in real life.
-</div>
-
-<div class="grid two">
-<div>
-<h3>Core expectations</h3>
-<div class="checklist">
-<label class="check"><input type="checkbox" data-check="safe-password"> I will keep my password private.</label>
-<label class="check"><input type="checkbox" data-check="safe-filter"> I will not try to bypass school filters or protections.</label>
-<label class="check"><input type="checkbox" data-check="safe-record"> I will not record, photograph, screenshot or share others without permission.</label>
-<label class="check"><input type="checkbox" data-check="safe-respect"> I will keep email, chat and Teams messages respectful and on-task.</label>
-<label class="check"><input type="checkbox" data-check="safe-report"> I will report worrying behaviour, bullying, unsafe content or impersonation quickly.</label>
-</div>
-</div>
-
-<div>
-<h3>The “stand over it” test</h3>
-<p>Before you post, message or share something, ask:</p>
-<ul>
-<li>Could I stand over this if it were read aloud to adults?</li>
-<li>Could I stand over this if it were screenshotted?</li>
-<li>Could I stand over this if it were shared more widely?</li>
-<li>Could I stand over this if there were serious consequences?</li>
-</ul>
-
-<label for="safeReflection"><strong>My digital citizenship rule</strong></label>
-<textarea id="safeReflection" data-reflect="safe" placeholder="One rule I will follow online is..."></textarea>
-</div>
-</div>
-</section>
-
-<section class="section card" id="care">
-<div class="section-title">
-<h2>5. Look After the Device</h2>
-<span class="pill">Care &amp; Security</span>
-</div>
-
-<div class="grid two">
-<div>
-<h3>Daily care check</h3>
-<div class="checklist">
-<label class="check"><input type="checkbox" data-check="care-charge"> I will bring my MacBook fully charged each day.</label>
-<label class="check"><input type="checkbox" data-check="care-liquid"> I will keep food and drinks away from the device.</label>
-<label class="check"><input type="checkbox" data-check="care-modify"> I will not write on, sticker, modify or damage the device.</label>
-<label class="check"><input type="checkbox" data-check="care-charger"> I will look after the charger and cables.</label>
-<label class="check"><input type="checkbox" data-check="care-safe"> I will keep the MacBook with me or stored safely.</label>
-</div>
-</div>
-
-<div>
-<h3>If something goes wrong</h3>
-<div class="challenge">
-         Do not hide the problem and do not try to fix it yourself.
-</div>
-<ul>
-<li><strong>Damage:</strong> report it to your Form Tutor and IT Service Desk.</li>
-<li><strong>Loss:</strong> tell a trusted adult immediately.</li>
-<li><strong>Settings issue:</strong> raise an IT ticket.</li>
-<li><strong>Online worry:</strong> tell a teacher or safeguarding lead.</li>
-</ul>
-
-<label for="careReflection"><strong>My care habit</strong></label>
-<textarea id="careReflection" data-reflect="care" placeholder="One habit that will help me look after my MacBook is..."></textarea>
-</div>
-</div>
-</section>
-
-<section class="section card" id="balance">
-<div class="section-title">
-<h2>6. Balance Matters</h2>
-<span class="pill">Wellbeing</span>
-</div>
-
-<div class="callout">
-     Quality of learning matters more than time on device.
-</div>
-
-<div class="grid two">
-<div>
-<h3>Stay focused</h3>
-<p>
-         Your MacBook should help you learn more, not less. If it becomes a distraction, change the setup or ask for support.
-</p>
-
-<div class="checklist">
-<label class="check"><input type="checkbox" data-check="balance-focus"> I found Focus settings: <strong>System Settings → Focus</strong>.</label>
-<label class="check"><input type="checkbox" data-check="balance-notifications"> I checked which notifications might distract me in lessons.</label>
-<label class="check"><input type="checkbox" data-check="balance-breaks"> I understand that breaks, reading, discussion and offline thinking matter too.</label>
-</div>
-</div>
-
-<div>
-<h3>Purposeful use over screen time</h3>
-<p>
-         Use your MacBook when it improves the quality of your learning. Put it away when another approach is better.
-</p>
-
-<label for="balanceReflection"><strong>My focus strategy</strong></label>
-<textarea id="balanceReflection" data-reflect="balance" placeholder="When I need to focus, I will..."></textarea>
-</div>
-</div>
-</section>
-
-<section class="section card" id="scenarios">
-<div class="section-title">
-<h2>7. Judgement Check</h2>
-<span class="pill warn">Scenario engine</span>
-</div>
-
-<p>
-     This section checks whether you can make good decisions, not just remember rules.
-     Answer each scenario. You need at least <strong>80%</strong> to unlock the final commitment.
-</p>
-
-<div class="scorebox">
-<div class="scoreitem">
-<strong id="scenarioAnswered">0/0</strong>
-       Scenarios answered
-</div>
-<div class="scoreitem">
-<strong id="scenarioScore">0%</strong>
-       Current score
-</div>
-<div class="scoreitem">
-<strong id="scenarioReadiness">Not ready yet</strong>
-       Final commitment
-</div>
-</div>
-
-<div class="scenario-toolbar">
-<button class="btn" id="resetScenarios">Reset scenarios</button>
-<span class="muted small">You can change an answer before completing the programme.</span>
-</div>
-
-<div class="scenario-grid" id="scenarioGrid"></div>
-</section>
-
-<section class="section card" id="final">
-<div class="section-title">
-<h2>8. Trusted Device User</h2>
-<span class="pill ok">Final stage</span>
-</div>
-
-<div id="finalLockMessage" class="challenge">
-     Complete the judgement scenarios with at least 80% to unlock the final commitment.
-</div>
-
-<div id="finalContent" class="final-lock">
-<h3>Final task: My MacBook Use Plan</h3>
-<p>
-       Write a short personal plan. This proves you understand how to use your MacBook purposefully, safely and effectively.
-</p>
-
-<div class="grid two">
-<div>
-<label for="planHabits"><strong>3 habits for learning</strong></label>
-<textarea id="planHabits" data-reflect="planHabits" placeholder="Example: I will save work in OneDrive, lock my screen, and use Focus in lessons."></textarea>
-
-<label for="planSafety"><strong>3 safety expectations</strong></label>
-<textarea id="planSafety" data-reflect="planSafety" placeholder="Example: I will protect my password, avoid recording others, and report concerns quickly."></textarea>
-
-<label for="planShortcuts"><strong>3 shortcuts or gestures I will use</strong></label>
-<textarea id="planShortcuts" data-reflect="planShortcuts" placeholder="Example: Command + Space, Command + Tab, Control + Command + Q."></textarea>
-</div>
-
-<div>
-<label for="planFlint"><strong>1 rule for using Flint</strong></label>
-<textarea id="planFlint" data-reflect="planFlint" placeholder="Example: I will use Flint to test and improve my thinking, not to do the work for me."></textarea>
-
-<label for="planFocus"><strong>1 strategy for staying focused</strong></label>
-<textarea id="planFocus" data-reflect="planFocus" placeholder="Example: I will use Focus mode and close tabs that are not needed for the lesson."></textarea>
-
-<div class="checklist">
-<label class="check">
-<input type="checkbox" id="commitmentCheck" data-check="final-commitment">
-<span>
-               I agree to use my school MacBook safely, responsibly and respectfully, to protect myself and others,
-               and to follow school expectations in and out of school.
-</span>
-</label>
-</div>
-</div>
-</div>
-
-<div class="row" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
-<button class="btn primary" id="generateBadge" disabled>Generate Trusted Device User badge</button>
-<button class="btn" id="copySummaryBottom">Copy readiness summary</button>
-</div>
-
-<div id="badgeArea" style="display:none; margin-top:16px">
-<h3>Your badge</h3>
-<canvas id="badgeCanvas" width="900" height="900" aria-label="Trusted Device User badge"></canvas>
-<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
-<button class="btn primary" id="downloadBadge">Download badge PNG</button>
-</div>
-</div>
-</div>
-</section>
-
-<section class="section card" id="links">
-<h2>Helpful Links</h2>
-<p class="muted">Use these when you want to check or adapt your settings.</p>
-<div style="display:flex; gap:10px; flex-wrap:wrap">
-<a class="btn small" href="https://support.apple.com/en-gb/102482" target="_blank" rel="noopener">Apple gestures guide</a>
-<a class="btn small" href="https://support.apple.com/en-gb/102650" target="_blank" rel="noopener">Apple keyboard shortcuts</a>
-<a class="btn small" href="https://support.apple.com/en-gb/guide/mac-help/mh26782/mac" target="_blank" rel="noopener">Screenshots and recordings</a>
-<a class="btn small" href="https://support.apple.com/en-gb/guide/mac-help/mchl613dc43f/mac" target="_blank" rel="noopener">Set up Focus</a>
-<a class="btn small" href="https://support.microsoft.com/onedrive" target="_blank" rel="noopener">OneDrive help</a>
-<a class="btn small" href="https://support.microsoft.com/teams" target="_blank" rel="noopener">Teams help</a>
-</div>
-</section>
-
-<footer>
-   MacBook Readiness Programme · UK English · Progress saves locally · © Downsend / Your School
-</footer>
+  <section class="hero section" id="start">
+    <div class="card">
+      <span class="pill">Future Thinking · Academic Excellence · Human Potential</span>
+      <h2 style="margin-top:14px">This is not really about the MacBook.</h2>
+      <p class="lead">
+        It is about becoming a learner who can think, create, collaborate and make good decisions in a digital world.
+      </p>
+
+      <div class="callout">
+        At Downsend, it is never about the device. It is about the learner.
+      </div>
+
+      <p>
+        Your MacBook is a powerful learning tool. Used well, it can help you research, design, write,
+        code, create, organise your work and prepare for future study and work.
+      </p>
+
+      <div class="challenge">
+        Your MacBook is a privilege built on trust. Trust is shown through how you use it.
+      </div>
+
+      <div class="checklist">
+        <label class="check">
+          <input type="checkbox" data-check="start-understand">
+          <span>I understand that my MacBook is a learning device, not simply a personal entertainment device.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" data-check="start-purposeful">
+          <span>I understand that technology should be used when it improves learning, not just because it is available.</span>
+        </label>
+      </div>
+
+      <a class="btn primary" href="#learn">Start readiness journey</a>
+    </div>
+
+    <div class="card">
+      <h2>Readiness status</h2>
+      <p class="muted">
+        Your status updates as you complete checklists, respond to scenarios, and write your personal use plan.
+      </p>
+
+      <div class="scorebox" style="grid-template-columns:1fr">
+        <div class="scoreitem">
+          <strong id="heroProgress">0%</strong>
+          Overall completion
+        </div>
+        <div class="scoreitem">
+          <strong id="heroScenario">0/8</strong>
+          Judgement scenarios completed
+        </div>
+        <div class="scoreitem">
+          <strong id="heroFinal">Locked</strong>
+          Trusted Device User
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" id="learn">
+    <div class="section-title">
+      <h2>1. Ready to Learn</h2>
+      <span class="pill">Workflow</span>
+    </div>
+
+    <div class="callout">
+      Strong learners are organised. They know where their work is, how to access it and how to submit it.
+    </div>
+
+    <div class="grid two">
+      <div>
+        <h3>Set up your learning workflow</h3>
+        <div class="checklist">
+          <label class="check"><input type="checkbox" data-check="learn-login"> Log in using your school account.</label>
+          <label class="check"><input type="checkbox" data-check="learn-onedrive"> Open OneDrive and create subject folders.</label>
+          <label class="check"><input type="checkbox" data-check="learn-teams"> Open Teams and locate your classes and assignments.</label>
+          <label class="check"><input type="checkbox" data-check="learn-submit"> Upload a file to OneDrive and submit or share it through Teams as instructed.</label>
+          <label class="check"><input type="checkbox" data-check="learn-lock"> Practise locking your screen using <kbd>Control</kbd> + <kbd>Command</kbd> + <kbd>Q</kbd>.</label>
+        </div>
+      </div>
+
+      <div>
+        <h3>Avoid the common mistake</h3>
+        <div class="dangerbox">
+          Do not rely on Desktop or Downloads as your only copy. If your work is not saved properly, you risk losing it.
+        </div>
+
+        <label for="workflowReflection"><strong>My workflow promise</strong></label>
+        <textarea id="workflowReflection" data-reflect="workflow" placeholder="I will keep my work organised by..."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" id="control">
+    <div class="section-title">
+      <h2>2. Control Your MacBook</h2>
+      <span class="pill">Efficiency</span>
+    </div>
+
+    <div class="callout">
+      Efficient learners reduce friction. Your MacBook should work for you.
+    </div>
+
+    <p>
+      You do not need to use every feature. The goal is to choose gestures and shortcuts that make your learning faster,
+      calmer and more effective.
+    </p>
+
+    <div class="grid two">
+      <div class="mini-card">
+        <h3>Adapt your gestures</h3>
+        <p>Find these settings here: <strong>System Settings → Trackpad</strong></p>
+
+        <div class="gesture-grid">
+          <div class="gesture">
+            <svg viewBox="0 0 200 120" aria-label="Two-finger scroll">
+              <rect x="10" y="6" width="180" height="108" rx="12" fill="#eef4ff" stroke="#cfd6e1"/>
+              <circle cx="92" cy="64" r="12" fill="#bbb"/>
+              <circle cx="112" cy="64" r="12" fill="#bbb"/>
+              <path d="M102 28 L102 50" stroke="#0A66C2" stroke-width="4" stroke-linecap="round"/>
+              <path d="M96 44 L102 52 L108 44" fill="none" stroke="#0A66C2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <strong>Two-finger scroll</strong>
+            <p class="small muted">Move quickly through pages and documents.</p>
+          </div>
+
+          <div class="gesture">
+            <svg viewBox="0 0 200 120" aria-label="Three-finger swipe">
+              <rect x="10" y="6" width="180" height="108" rx="12" fill="#eef4ff" stroke="#cfd6e1"/>
+              <circle cx="84" cy="74" r="10" fill="#bbb"/>
+              <circle cx="102" cy="74" r="10" fill="#bbb"/>
+              <circle cx="120" cy="74" r="10" fill="#bbb"/>
+              <path d="M50 44 L150 44" stroke="#0A66C2" stroke-width="4" stroke-linecap="round"/>
+              <path d="M140 36 L152 44 L140 52" fill="none" stroke="#0A66C2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <strong>Three-finger swipe</strong>
+            <p class="small muted">Switch spaces or full-screen apps efficiently.</p>
+          </div>
+
+          <div class="gesture">
+            <svg viewBox="0 0 200 120" aria-label="Pinch to zoom">
+              <rect x="10" y="6" width="180" height="108" rx="12" fill="#eef4ff" stroke="#cfd6e1"/>
+              <circle cx="90" cy="60" r="10" fill="#bbb"/>
+              <circle cx="120" cy="60" r="10" fill="#bbb"/>
+              <path d="M90 60 L70 40 M120 60 L140 40" stroke="#0A66C2" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <strong>Pinch to zoom</strong>
+            <p class="small muted">Read detail more clearly and work precisely.</p>
+          </div>
+        </div>
+
+        <div class="checklist">
+          <label class="check"><input type="checkbox" data-check="control-trackpad"> I found Trackpad settings.</label>
+          <label class="check"><input type="checkbox" data-check="control-gesture"> I chose at least one gesture that will help me work efficiently.</label>
+        </div>
+
+        <label for="gestureReflection"><strong>Gesture I will use</strong></label>
+        <textarea id="gestureReflection" data-reflect="gesture" placeholder="One gesture I will use is... because..."></textarea>
+      </div>
+
+      <div class="mini-card">
+        <h3>Build shortcut fluency</h3>
+        <p>Find more shortcuts here: <strong>System Settings → Keyboard → Keyboard Shortcuts</strong></p>
+        <p class="muted">Choose your personal top five. You are not expected to memorise everything at once.</p>
+
+        <div class="checklist" id="shortcutChecklist">
+          <label class="check"><input type="checkbox" data-check="shortcut-spotlight" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>Space</kbd> — Spotlight search</label>
+          <label class="check"><input type="checkbox" data-check="shortcut-tab" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>Tab</kbd> — switch apps</label>
+          <label class="check"><input type="checkbox" data-check="shortcut-copy" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>C</kbd> / <kbd>⌘</kbd> + <kbd>V</kbd> — copy and paste</label>
+          <label class="check"><input type="checkbox" data-check="shortcut-undo" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>Z</kbd> — undo</label>
+          <label class="check"><input type="checkbox" data-check="shortcut-save" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>S</kbd> — save</label>
+          <label class="check"><input type="checkbox" data-check="shortcut-find" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>F</kbd> — find</label>
+          <label class="check"><input type="checkbox" data-check="shortcut-screenshot" data-limit-group="shortcuts"> <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>5</kbd> — screenshot or record</label>
+          <label class="check"><input type="checkbox" data-check="shortcut-lock" data-limit-group="shortcuts"> <kbd>Control</kbd> + <kbd>⌘</kbd> + <kbd>Q</kbd> — lock screen</label>
+        </div>
+
+        <p class="pill" id="shortcutCount">0 selected</p>
+      </div>
+    </div>
+
+    <div class="mini-card media-frame" id="shortcutImageFrame" style="margin-top:14px">
+      <h3>Shortcut reference card</h3>
+      <p class="muted">
+        Use this as a reference. You are not expected to learn every shortcut today.
+      </p>
+      <img
+        id="shortcutImage"
+        class="reference-img"
+        alt="MacBook shortcuts reference sheet"
+      />
+      <div class="image-fallback">
+        <strong>Shortcut image not found.</strong>
+        <p style="margin:8px 0 0">
+          The page tried several common paths. The most reliable option is to rename the file to:
+        </p>
+        <p><code>macbook-shortcuts-downsend.png</code></p>
+        <p>Then use that exact filename in the same folder as <code>index.html</code>.</p>
+        <ul class="image-test-list" id="imageTestList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" id="flint">
+    <div class="section-title">
+      <h2>3. Thinking with AI: Flint</h2>
+      <span class="pill">AI Literacy</span>
+    </div>
+
+    <div class="callout">
+      Flint is our approved AI learning tool. It is designed to make you think hard — and when you are thinking hard, you are learning.
+    </div>
+
+    <div class="grid two">
+      <div>
+        <h3>Use Flint to support thinking</h3>
+        <div class="checklist">
+          <label class="check"><input type="checkbox" data-check="flint-explain"> I can use Flint to explain a difficult idea in a different way.</label>
+          <label class="check"><input type="checkbox" data-check="flint-quiz"> I can ask Flint to quiz me and check my understanding.</label>
+          <label class="check"><input type="checkbox" data-check="flint-feedback"> I can ask Flint for feedback that helps me improve my own work.</label>
+          <label class="check"><input type="checkbox" data-check="flint-declare"> I understand that AI use must be transparent and follow school expectations.</label>
+        </div>
+      </div>
+
+      <div>
+        <h3>Do not use Flint to avoid thinking</h3>
+        <div class="dangerbox">
+          If Flint is doing the thinking, you are not learning.
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Good use</th>
+              <th>Poor use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>“Quiz me on this topic.”</td>
+              <td>“Write my homework.”</td>
+            </tr>
+            <tr>
+              <td>“Challenge my argument.”</td>
+              <td>“Make it sound like I did more than I did.”</td>
+            </tr>
+            <tr>
+              <td>“Explain this another way.”</td>
+              <td>“Give me a final answer to submit.”</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <label for="flintReflection"><strong>My Flint rule</strong></label>
+        <textarea id="flintReflection" data-reflect="flint" placeholder="My rule for using Flint is..."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" id="safe">
+    <div class="section-title">
+      <h2>4. Safe, Responsible and Respectful</h2>
+      <span class="pill">Digital Citizenship</span>
+    </div>
+
+    <div class="callout">
+      You are as responsible for your actions online as you are in real life.
+    </div>
+
+    <div class="grid two">
+      <div>
+        <h3>Core expectations</h3>
+        <div class="checklist">
+          <label class="check"><input type="checkbox" data-check="safe-password"> I will keep my password private.</label>
+          <label class="check"><input type="checkbox" data-check="safe-filter"> I will not try to bypass school filters or protections.</label>
+          <label class="check"><input type="checkbox" data-check="safe-record"> I will not record, photograph, screenshot or share others without permission.</label>
+          <label class="check"><input type="checkbox" data-check="safe-respect"> I will keep email, chat and Teams messages respectful and on-task.</label>
+          <label class="check"><input type="checkbox" data-check="safe-report"> I will report worrying behaviour, bullying, unsafe content or impersonation quickly.</label>
+        </div>
+      </div>
+
+      <div>
+        <h3>The “stand over it” test</h3>
+        <p>Before you post, message or share something, ask:</p>
+        <ul>
+          <li>Could I stand over this if it were read aloud to adults?</li>
+          <li>Could I stand over this if it were screenshotted?</li>
+          <li>Could I stand over this if it were shared more widely?</li>
+          <li>Could I stand over this if there were serious consequences?</li>
+        </ul>
+
+        <label for="safeReflection"><strong>My digital citizenship rule</strong></label>
+        <textarea id="safeReflection" data-reflect="safe" placeholder="One rule I will follow online is..."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" id="care">
+    <div class="section-title">
+      <h2>5. Look After the Device</h2>
+      <span class="pill">Care &amp; Security</span>
+    </div>
+
+    <div class="grid two">
+      <div>
+        <h3>Daily care check</h3>
+        <div class="checklist">
+          <label class="check"><input type="checkbox" data-check="care-charge"> I will bring my MacBook fully charged each day.</label>
+          <label class="check"><input type="checkbox" data-check="care-liquid"> I will keep food and drinks away from the device.</label>
+          <label class="check"><input type="checkbox" data-check="care-modify"> I will not write on, sticker, modify or damage the device.</label>
+          <label class="check"><input type="checkbox" data-check="care-charger"> I will look after the charger and cables.</label>
+          <label class="check"><input type="checkbox" data-check="care-safe"> I will keep the MacBook with me or stored safely.</label>
+        </div>
+      </div>
+
+      <div>
+        <h3>If something goes wrong</h3>
+        <div class="challenge">
+          Do not hide the problem and do not try to fix it yourself.
+        </div>
+        <ul>
+          <li><strong>Damage:</strong> report it to your Form Tutor and IT Service Desk.</li>
+          <li><strong>Loss:</strong> tell a trusted adult immediately.</li>
+          <li><strong>Settings issue:</strong> raise an IT ticket.</li>
+          <li><strong>Online worry:</strong> tell a teacher or safeguarding lead.</li>
+        </ul>
+
+        <label for="careReflection"><strong>My care habit</strong></label>
+        <textarea id="careReflection" data-reflect="care" placeholder="One habit that will help me look after my MacBook is..."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" id="balance">
+    <div class="section-title">
+      <h2>6. Balance Matters</h2>
+      <span class="pill">Wellbeing</span>
+    </div>
+
+    <div class="callout">
+      Quality of learning matters more than time on device.
+    </div>
+
+    <div class="grid two">
+      <div>
+        <h3>Stay focused</h3>
+        <p>
+          Your MacBook should help you learn more, not less. If it becomes a distraction, change the setup or ask for support.
+        </p>
+
+        <div class="checklist">
+          <label class="check"><input type="checkbox" data-check="balance-focus"> I found Focus settings: <strong>System Settings → Focus</strong>.</label>
+          <label class="check"><input type="checkbox" data-check="balance-notifications"> I checked which notifications might distract me in lessons.</label>
+          <label class="check"><input type="checkbox" data-check="balance-breaks"> I understand that breaks, reading, discussion and offline thinking matter too.</label>
+        </div>
+      </div>
+
+      <div>
+        <h3>Purposeful use over screen time</h3>
+        <p>
+          Use your MacBook when it improves the quality of your learning. Put it away when another approach is better.
+        </p>
+
+        <label for="balanceReflection"><strong>My focus strategy</strong></label>
+        <textarea id="balanceReflection" data-reflect="balance" placeholder="When I need to focus, I will..."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" id="scenarios">
+    <div class="section-title">
+      <h2>7. Judgement Check</h2>
+      <span class="pill warn">Scenario engine</span>
+    </div>
+
+    <p>
+      This section checks whether you can make good decisions, not just remember rules.
+      Answer each scenario. You need at least <strong>80%</strong> to unlock the final commitment.
+    </p>
+
+    <div class="scorebox">
+      <div class="scoreitem">
+        <strong id="scenarioAnswered">0/8</strong>
+        Scenarios answered
+      </div>
+      <div class="scoreitem">
+        <strong id="scenarioScore">0%</strong>
+        Current score
+      </div>
+      <div class="scoreitem">
+        <strong id="scenarioReadiness">Not ready yet</strong>
+        Final commitment
+      </div>
+    </div>
+
+    <div class="scenario-toolbar">
+      <button class="btn" id="resetScenarios" type="button">Reset scenarios</button>
+      <span class="muted small">You can change an answer before completing the programme.</span>
+    </div>
+
+    <div class="scenario-grid" id="scenarioGrid"></div>
+  </section>
+
+  <section class="section card" id="final">
+    <div class="section-title">
+      <h2>8. Trusted Device User</h2>
+      <span class="pill ok">Final stage</span>
+    </div>
+
+    <div id="finalLockMessage" class="challenge">
+      Complete the judgement scenarios with at least 80% to unlock the final commitment.
+    </div>
+
+    <div id="finalContent" class="final-lock">
+      <h3>Final task: My MacBook Use Plan</h3>
+      <p>
+        Write a short personal plan. This proves you understand how to use your MacBook purposefully, safely and effectively.
+      </p>
+
+      <div class="grid two">
+        <div>
+          <label for="planHabits"><strong>3 habits for learning</strong></label>
+          <textarea id="planHabits" data-reflect="planHabits" placeholder="Example: I will save work in OneDrive, lock my screen, and use Focus in lessons."></textarea>
+
+          <label for="planSafety"><strong>3 safety expectations</strong></label>
+          <textarea id="planSafety" data-reflect="planSafety" placeholder="Example: I will protect my password, avoid recording others, and report concerns quickly."></textarea>
+
+          <label for="planShortcuts"><strong>3 shortcuts or gestures I will use</strong></label>
+          <textarea id="planShortcuts" data-reflect="planShortcuts" placeholder="Example: Command + Space, Command + Tab, Control + Command + Q."></textarea>
+        </div>
+
+        <div>
+          <label for="planFlint"><strong>1 rule for using Flint</strong></label>
+          <textarea id="planFlint" data-reflect="planFlint" placeholder="Example: I will use Flint to test and improve my thinking, not to do the work for me."></textarea>
+
+          <label for="planFocus"><strong>1 strategy for staying focused</strong></label>
+          <textarea id="planFocus" data-reflect="planFocus" placeholder="Example: I will use Focus mode and close tabs that are not needed for the lesson."></textarea>
+
+          <div class="checklist">
+            <label class="check">
+              <input type="checkbox" id="commitmentCheck" data-check="final-commitment">
+              <span>
+                I agree to use my school MacBook safely, responsibly and respectfully, to protect myself and others,
+                and to follow school expectations in and out of school.
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:12px">
+        <button class="btn primary" id="generateBadge" disabled type="button">Generate Trusted Device User badge</button>
+        <button class="btn" id="copySummaryBottom" type="button">Copy readiness summary</button>
+      </div>
+
+      <div id="badgeArea" style="display:none; margin-top:16px">
+        <h3>Your badge</h3>
+        <canvas id="badgeCanvas" width="900" height="900" aria-label="Trusted Device User badge"></canvas>
+        <div class="row" style="margin-top:10px">
+          <button class="btn primary" id="downloadBadge" type="button">Download badge PNG</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section card" id="links">
+    <h2>Helpful Links</h2>
+    <p class="muted">Use these when you want to check or adapt your settings.</p>
+    <div class="row">
+      <a class="btn small" href="https://support.apple.com/en-gb/102482" target="_blank" rel="noopener">Apple gestures guide</a>
+      <a class="btn small" href="https://support.apple.com/en-gb/102650" target="_blank" rel="noopener">Apple keyboard shortcuts</a>
+      <a class="btn small" href="https://support.apple.com/en-gb/guide/mac-help/mh26782/mac" target="_blank" rel="noopener">Screenshots and recordings</a>
+      <a class="btn small" href="https://support.apple.com/en-gb/guide/mac-help/mchl613dc43f/mac" target="_blank" rel="noopener">Set up Focus</a>
+      <a class="btn small" href="https://support.microsoft.com/onedrive" target="_blank" rel="noopener">OneDrive help</a>
+      <a class="btn small" href="https://support.microsoft.com/teams" target="_blank" rel="noopener">Teams help</a>
+    </div>
+  </section>
+
+  <footer>
+    MacBook Readiness Programme · UK English · Progress saves locally · © Downsend / Your School
+  </footer>
 
 </main>
 
@@ -1208,198 +1161,114 @@
 
 <script>
 /* ==========================
-  MacBook Readiness Programme
-  Local-only progress storage
+   MacBook Readiness Programme
+   Full scenario engine + local progress
 ========================== */
 
-const APP_VERSION = "downsend-macbook-readiness-v1";
+const APP_VERSION = "downsend-macbook-readiness-v2";
 const STORAGE_KEY = APP_VERSION + ".state";
 
+const IMAGE_CANDIDATES = [
+  "./macbook-shortcuts-downsend.png",
+  "./MacBook%20Shortcuts%20-%20Downsend.png",
+  "./MacBook Shortcuts - Downsend.png",
+  "MacBook%20Shortcuts%20-%20Downsend.png",
+  "./MacBook Shortcuts - Downsend.PNG",
+  "./assets/macbook-shortcuts-downsend.png",
+  "./assets/MacBook%20Shortcuts%20-%20Downsend.png",
+  "./images/macbook-shortcuts-downsend.png",
+  "./images/MacBook%20Shortcuts%20-%20Downsend.png"
+];
+
 const SCENARIOS = [
- {
-   id: "password",
-   category: "Security",
-   title: "Someone asks for your login",
-   prompt: "A friend says they need your password to quickly download a file for class. What should you do?",
-   options: [
-     {
-       text: "Give it to them because they are your friend.",
-       correct: false,
-       feedback: "Not safe. Your login is private and you are responsible for what happens on your account."
-     },
-     {
-       text: "Refuse politely and suggest they ask IT or the teacher.",
-       correct: true,
-       feedback: "Correct. Protecting your account protects you and the school community."
-     },
-     {
-       text: "Type it in for them so they do not see the password.",
-       correct: false,
-       feedback: "Still not appropriate. They would be using your account and you could be responsible."
-     }
-   ]
- },
- {
-   id: "recording",
-   category: "Respect",
-   title: "Recording without permission",
-   prompt: "You see someone recording another student without permission and sharing it in a chat. What should you do?",
-   options: [
-     {
-       text: "Ignore it because it does not involve you.",
-       correct: false,
-       feedback: "Ignoring it allows harm to continue. Recording or sharing someone without permission is not acceptable."
-     },
-     {
-       text: "Ask them to stop and report it to a trusted adult.",
-       correct: true,
-       feedback: "Correct. This protects the person being recorded and shows good digital citizenship."
-     },
-     {
-       text: "Save the video as evidence and send it to friends.",
-       correct: false,
-       feedback: "That would spread the problem further. Report it without resharing."
-     }
-   ]
- },
- {
-   id: "flint",
-   category: "AI",
-   title: "Using Flint for homework",
-   prompt: "You are stuck on a paragraph. What is the best way to use Flint?",
-   options: [
-     {
-       text: "Ask Flint to write the paragraph and submit it.",
-       correct: false,
-       feedback: "That avoids the thinking. AI should not do the learning for you."
-     },
-     {
-       text: "Ask Flint to explain the concept, quiz you, and give feedback on your own draft.",
-       correct: true,
-       feedback: "Correct. Flint is strongest when it helps you think, practise and improve."
-     },
-     {
-       text: "Ask Flint to make your paragraph sound like you understand it even if you do not.",
-       correct: false,
-       feedback: "That is not honest learning. If you do not understand something, use Flint to help you learn it."
-     }
-   ]
- },
- {
-   id: "damage",
-   category: "Care",
-   title: "The MacBook is damaged",
-   prompt: "You notice your MacBook screen has been damaged. You are worried you will get into trouble. What should you do?",
-   options: [
-     {
-       text: "Keep using it and hope nobody notices.",
-       correct: false,
-       feedback: "Hiding issues usually makes them worse and delays help."
-     },
-     {
-       text: "Try to repair it yourself using an online video.",
-       correct: false,
-       feedback: "Do not attempt repairs yourself. Report damage properly."
-     },
-     {
-       text: "Tell your Form Tutor and the IT Service Desk quickly.",
-       correct: true,
-       feedback: "Correct. Reporting problems quickly is part of being a trusted device user."
-     }
-   ]
- },
- {
-   id: "downloads",
-   category: "Organisation",
-   title: "Work saved in Downloads",
-   prompt: "You have finished an important piece of work, but it is only saved in Downloads. What should you do?",
-   options: [
-     {
-       text: "Leave it there because Downloads is easy to find.",
-       correct: false,
-       feedback: "Downloads is not a reliable long-term place for school work."
-     },
-     {
-       text: "Save it to the correct OneDrive subject folder and submit through Teams if required.",
-       correct: true,
-       feedback: "Correct. This keeps your work organised, backed up and accessible."
-     },
-     {
-       text: "Email it to yourself and delete the original.",
-       correct: false,
-       feedback: "That is not the best workflow. Use OneDrive and Teams as instructed."
-     }
-   ]
- },
- {
-   id: "focus",
-   category: "Wellbeing",
-   title: "Notifications in a lesson",
-   prompt: "You keep getting notifications during a lesson and they are distracting you. What is the best response?",
-   options: [
-     {
-       text: "Keep checking them quickly so you do not miss anything.",
-       correct: false,
-       feedback: "That fragments attention and reduces the quality of your learning."
-     },
-     {
-       text: "Use Focus settings and close anything not needed for the lesson.",
-       correct: true,
-       feedback: "Correct. Good learners control the device rather than letting the device control them."
-     },
-     {
-       text: "Turn the volume down but keep all apps open.",
-       correct: false,
-       feedback: "That may help slightly, but the better answer is to reduce distractions properly."
-     }
-   ]
- },
- {
-   id: "filters",
-   category: "Safety",
-   title: "Bypassing filters",
-   prompt: "A student shows you a way to bypass the school filter using a VPN or proxy. What should you do?",
-   options: [
-     {
-       text: "Try it once to see if it works.",
-       correct: false,
-       feedback: "Trying to bypass protections is a serious misuse of the device and network."
-     },
-     {
-       text: "Do not use it and report the issue to a trusted adult or IT.",
-       correct: true,
-       feedback: "Correct. Filters and protections exist to keep people safe."
-     },
-     {
-       text: "Share it only with close friends.",
-       correct: false,
-       feedback: "Sharing it spreads the risk and increases the seriousness of the issue."
-     }
-   ]
- },
- {
-   id: "screen-time",
-   category: "Purpose",
-   title: "Using the MacBook all lesson",
-   prompt: "A task could be completed better through discussion and handwritten planning before using the MacBook. What should happen?",
-   options: [
-     {
-       text: "Use the MacBook anyway because the lesson involves devices.",
-       correct: false,
-       feedback: "Purposeful use means choosing the best tool for learning, not always choosing the screen."
-     },
-     {
-       text: "Use discussion or paper first, then use the MacBook when it improves the work.",
-       correct: true,
-       feedback: "Correct. Quality of learning matters more than time on device."
-     },
-     {
-       text: "Avoid the MacBook completely because screens are always worse.",
-       correct: false,
-       feedback: "Balance is the key. The question is whether the device improves learning at that moment."
-     }
-   ]
- }
+  {
+    id: "password",
+    category: "Security",
+    title: "Someone asks for your login",
+    prompt: "A friend says they need your password to quickly download a file for class. What should you do?",
+    options: [
+      { text: "Give it to them because they are your friend.", correct: false, feedback: "Not safe. Your login is private and you are responsible for what happens on your account." },
+      { text: "Refuse politely and suggest they ask IT or the teacher.", correct: true, feedback: "Correct. Protecting your account protects you and the school community." },
+      { text: "Type it in for them so they do not see the password.", correct: false, feedback: "Still not appropriate. They would be using your account and you could be responsible." }
+    ]
+  },
+  {
+    id: "recording",
+    category: "Respect",
+    title: "Recording without permission",
+    prompt: "You see someone recording another student without permission and sharing it in a chat. What should you do?",
+    options: [
+      { text: "Ignore it because it does not involve you.", correct: false, feedback: "Ignoring it allows harm to continue. Recording or sharing someone without permission is not acceptable." },
+      { text: "Ask them to stop and report it to a trusted adult.", correct: true, feedback: "Correct. This protects the person being recorded and shows good digital citizenship." },
+      { text: "Save the video as evidence and send it to friends.", correct: false, feedback: "That would spread the problem further. Report it without resharing." }
+    ]
+  },
+  {
+    id: "flint",
+    category: "AI",
+    title: "Using Flint for homework",
+    prompt: "You are stuck on a paragraph. What is the best way to use Flint?",
+    options: [
+      { text: "Ask Flint to write the paragraph and submit it.", correct: false, feedback: "That avoids the thinking. AI should not do the learning for you." },
+      { text: "Ask Flint to explain the concept, quiz you, and give feedback on your own draft.", correct: true, feedback: "Correct. Flint is strongest when it helps you think, practise and improve." },
+      { text: "Ask Flint to make your paragraph sound like you understand it even if you do not.", correct: false, feedback: "That is not honest learning. If you do not understand something, use Flint to help you learn it." }
+    ]
+  },
+  {
+    id: "damage",
+    category: "Care",
+    title: "The MacBook is damaged",
+    prompt: "You notice your MacBook screen has been damaged. You are worried you will get into trouble. What should you do?",
+    options: [
+      { text: "Keep using it and hope nobody notices.", correct: false, feedback: "Hiding issues usually makes them worse and delays help." },
+      { text: "Try to repair it yourself using an online video.", correct: false, feedback: "Do not attempt repairs yourself. Report damage properly." },
+      { text: "Tell your Form Tutor and the IT Service Desk quickly.", correct: true, feedback: "Correct. Reporting problems quickly is part of being a trusted device user." }
+    ]
+  },
+  {
+    id: "downloads",
+    category: "Organisation",
+    title: "Work saved in Downloads",
+    prompt: "You have finished an important piece of work, but it is only saved in Downloads. What should you do?",
+    options: [
+      { text: "Leave it there because Downloads is easy to find.", correct: false, feedback: "Downloads is not a reliable long-term place for school work." },
+      { text: "Save it to the correct OneDrive subject folder and submit through Teams if required.", correct: true, feedback: "Correct. This keeps your work organised, backed up and accessible." },
+      { text: "Email it to yourself and delete the original.", correct: false, feedback: "That is not the best workflow. Use OneDrive and Teams as instructed." }
+    ]
+  },
+  {
+    id: "focus",
+    category: "Wellbeing",
+    title: "Notifications in a lesson",
+    prompt: "You keep getting notifications during a lesson and they are distracting you. What is the best response?",
+    options: [
+      { text: "Keep checking them quickly so you do not miss anything.", correct: false, feedback: "That fragments attention and reduces the quality of your learning." },
+      { text: "Use Focus settings and close anything not needed for the lesson.", correct: true, feedback: "Correct. Good learners control the device rather than letting the device control them." },
+      { text: "Turn the volume down but keep all apps open.", correct: false, feedback: "That may help slightly, but the better answer is to reduce distractions properly." }
+    ]
+  },
+  {
+    id: "filters",
+    category: "Safety",
+    title: "Bypassing filters",
+    prompt: "A student shows you a way to bypass the school filter using a VPN or proxy. What should you do?",
+    options: [
+      { text: "Try it once to see if it works.", correct: false, feedback: "Trying to bypass protections is a serious misuse of the device and network." },
+      { text: "Do not use it and report the issue to a trusted adult or IT.", correct: true, feedback: "Correct. Filters and protections exist to keep people safe." },
+      { text: "Share it only with close friends.", correct: false, feedback: "Sharing it spreads the risk and increases the seriousness of the issue." }
+    ]
+  },
+  {
+    id: "screen-time",
+    category: "Purpose",
+    title: "Using the MacBook all lesson",
+    prompt: "A task could be completed better through discussion and handwritten planning before using the MacBook. What should happen?",
+    options: [
+      { text: "Use the MacBook anyway because the lesson involves devices.", correct: false, feedback: "Purposeful use means choosing the best tool for learning, not always choosing the screen." },
+      { text: "Use discussion or paper first, then use the MacBook when it improves the work.", correct: true, feedback: "Correct. Quality of learning matters more than time on device." },
+      { text: "Avoid the MacBook completely because screens are always worse.", correct: false, feedback: "Balance is the key. The question is whether the device improves learning at that moment." }
+    ]
+  }
 ];
 
 const $ = (sel, ctx=document) => ctx.querySelector(sel);
@@ -1408,386 +1277,423 @@ const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 let state = loadState();
 
 function defaultState(){
- return {
-   checks:{},
-   reflections:{},
-   scenarios:{},
-   badgeGenerated:false
- };
+  return {
+    checks:{},
+    reflections:{},
+    scenarios:{},
+    badgeGenerated:false
+  };
 }
 
 function loadState(){
- try{
-   return Object.assign(defaultState(), JSON.parse(localStorage.getItem(STORAGE_KEY)) || {});
- }catch(e){
-   return defaultState();
- }
+  try{
+    return Object.assign(defaultState(), JSON.parse(localStorage.getItem(STORAGE_KEY)) || {});
+  }catch(e){
+    return defaultState();
+  }
 }
 
 function saveState(){
- localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
 function init(){
- restoreChecks();
- restoreReflections();
- renderScenarios();
- bindEvents();
- updateChecklistStyles();
- updateShortcutCount();
- updateProgress();
- updateFinalLock();
+  restoreChecks();
+  restoreReflections();
+  renderScenarios();
+  bindEvents();
+  updateChecklistStyles();
+  updateShortcutCount();
+  updateProgress();
+  updateFinalLock();
+  loadShortcutImage();
 }
 
 function bindEvents(){
- 
- document.addEventListener("change", (e) => {
-   if(e.target.matches("[data-check]")){
-     const key = e.target.dataset.check;
-     state.checks[key] = e.target.checked;
-     enforceShortcutLimit(e.target);
-     updateChecklistStyles();
-     saveState();
-     updateProgress();
-     updateFinalLock();
-   }
- });
+  document.addEventListener("change", (e) => {
+    if(e.target.matches("[data-check]")){
+      const key = e.target.dataset.check;
+      state.checks[key] = e.target.checked;
+      enforceShortcutLimit(e.target);
+      updateChecklistStyles();
+      saveState();
+      updateProgress();
+      updateFinalLock();
+    }
+  });
 
- document.addEventListener("input", (e) => {
-   if(e.target.matches("[data-reflect]")){
-     state.reflections[e.target.dataset.reflect] = e.target.value;
-     saveState();
-     updateProgress();
-     updateFinalLock();
-   }
- });
+  document.addEventListener("input", (e) => {
+    if(e.target.matches("[data-reflect]")){
+      state.reflections[e.target.dataset.reflect] = e.target.value;
+      saveState();
+      updateProgress();
+      updateFinalLock();
+    }
+  });
 
- $("#resetAll").addEventListener("click", () => {
-   if(confirm("Reset all progress on this browser?")){
-     localStorage.removeItem(STORAGE_KEY);
-     state = defaultState();
-     location.reload();
-   }
- });
+  $("#resetAll").addEventListener("click", () => {
+    if(confirm("Reset all progress on this browser?")){
+      localStorage.removeItem(STORAGE_KEY);
+      state = defaultState();
+      location.reload();
+    }
+  });
 
- $("#resetScenarios").addEventListener("click", () => {
-   if(confirm("Reset judgement scenario answers?")){
-     state.scenarios = {};
-     saveState();
-     renderScenarios();
-     updateProgress();
-     updateFinalLock();
-   }
- });
+  $("#resetScenarios").addEventListener("click", () => {
+    if(confirm("Reset judgement scenario answers?")){
+      state.scenarios = {};
+      state.badgeGenerated = false;
+      saveState();
+      renderScenarios();
+      updateProgress();
+      updateFinalLock();
+    }
+  });
 
- $("#generateBadge").addEventListener("click", () => {
-   if(!finalReady()) return;
-   state.badgeGenerated = true;
-   saveState();
-   drawBadge();
-   $("#badgeArea").style.display = "block";
-   updateProgress();
-   celebrate();
-   setTimeout(() => $("#badgeArea").scrollIntoView({behavior:"smooth", block:"start"}), 100);
- });
+  $("#generateBadge").addEventListener("click", () => {
+    if(!finalReady()) return;
+    state.badgeGenerated = true;
+    saveState();
+    drawBadge();
+    $("#badgeArea").style.display = "block";
+    updateProgress();
+    celebrate();
+    setTimeout(() => $("#badgeArea").scrollIntoView({behavior:"smooth", block:"start"}), 100);
+  });
 
- $("#downloadBadge").addEventListener("click", () => {
-   const link = document.createElement("a");
-   link.download = "Trusted-Device-User-Badge.png";
-   link.href = $("#badgeCanvas").toDataURL("image/png");
-   link.click();
- });
+  $("#downloadBadge").addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.download = "Trusted-Device-User-Badge.png";
+    link.href = $("#badgeCanvas").toDataURL("image/png");
+    link.click();
+  });
 
- $("#copySummaryTop").addEventListener("click", copySummary);
- $("#copySummaryBottom").addEventListener("click", copySummary);
+  $("#copySummaryTop").addEventListener("click", copySummary);
+  $("#copySummaryBottom").addEventListener("click", copySummary);
 }
 
 function restoreChecks(){
- $$("[data-check]").forEach(cb => {
-   cb.checked = !!state.checks[cb.dataset.check];
- });
+  $$("[data-check]").forEach(cb => {
+    cb.checked = !!state.checks[cb.dataset.check];
+  });
 }
 
 function restoreReflections(){
- $$("[data-reflect]").forEach(el => {
-   el.value = state.reflections[el.dataset.reflect] || "";
- });
+  $$("[data-reflect]").forEach(el => {
+    el.value = state.reflections[el.dataset.reflect] || "";
+  });
 }
 
 function updateChecklistStyles(){
- $$(".check").forEach(label => {
-   const cb = $("input[type='checkbox']", label);
-   if(cb) label.classList.toggle("done", cb.checked);
- });
+  $$(".check").forEach(label => {
+    const cb = $("input[type='checkbox']", label);
+    if(cb) label.classList.toggle("done", cb.checked);
+  });
 }
 
 function enforceShortcutLimit(changedBox){
- if(!changedBox.dataset.limitGroup) return;
+  if(!changedBox.dataset.limitGroup) return;
+  const group = changedBox.dataset.limitGroup;
+  const boxes = $$(`[data-limit-group="${group}"]`);
+  const selected = boxes.filter(b => b.checked);
 
- const group = changedBox.dataset.limitGroup;
- const boxes = $$(`[data-limit-group="${group}"]`);
- const selected = boxes.filter(b => b.checked);
+  if(selected.length > 5){
+    changedBox.checked = false;
+    state.checks[changedBox.dataset.check] = false;
+    alert("Choose up to five shortcuts to focus on first.");
+  }
 
- if(selected.length > 5){
-   changedBox.checked = false;
-   state.checks[changedBox.dataset.check] = false;
-   alert("Choose up to five shortcuts to focus on first.");
- }
-
- updateShortcutCount();
+  updateShortcutCount();
 }
 
 function updateShortcutCount(){
- const selected = $$('[data-limit-group="shortcuts"]').filter(b => b.checked).length;
- $("#shortcutCount").textContent = `${selected} selected`;
- $("#shortcutCount").className = selected === 5 ? "pill ok" : "pill";
+  const selected = $$('[data-limit-group="shortcuts"]').filter(b => b.checked).length;
+  $("#shortcutCount").textContent = `${selected} selected`;
+  $("#shortcutCount").className = selected === 5 ? "pill ok" : "pill";
 }
 
 function renderScenarios(){
- const grid = $("#scenarioGrid");
- grid.innerHTML = "";
+  const grid = $("#scenarioGrid");
+  if(!grid) return;
+  grid.innerHTML = "";
 
- SCENARIOS.forEach((scenario, index) => {
-   const selected = state.scenarios[scenario.id];
-   const answered = Number.isInteger(selected);
-   const selectedOption = answered ? scenario.options[selected] : null;
+  SCENARIOS.forEach((scenario, index) => {
+    const selected = state.scenarios[scenario.id];
+    const answered = Number.isInteger(selected);
+    const selectedOption = answered ? scenario.options[selected] : null;
 
-   const card = document.createElement("article");
-   card.className = "scenario-card";
-   if(answered) card.classList.add(selectedOption.correct ? "correct" : "incorrect");
+    const card = document.createElement("article");
+    card.className = "scenario-card";
+    if(answered) card.classList.add(selectedOption.correct ? "correct" : "incorrect");
 
-   card.innerHTML = `
-<span class="pill">${scenario.category}</span>
-<h3 style="margin-top:10px">${index + 1}. ${scenario.title}</h3>
-<p>${scenario.prompt}</p>
-<div class="scenario-options">
-       ${scenario.options.map((option, optionIndex) => `
-<button class="btn ${answered && selected === optionIndex ? "selected" : ""}"
-                 data-scenario="${scenario.id}"
-                 data-option="${optionIndex}">
-           ${option.text}
-</button>
-       `).join("")}
-</div>
-<div class="feedback ${answered ? "show" : ""} ${answered && selectedOption.correct ? "good" : "bad"}">
-       ${answered ? selectedOption.feedback : ""}
-</div>
-   `;
+    card.innerHTML = `
+      <span class="pill">${scenario.category}</span>
+      <h3 style="margin-top:10px">${index + 1}. ${scenario.title}</h3>
+      <p>${scenario.prompt}</p>
+      <div class="scenario-options">
+        ${scenario.options.map((option, optionIndex) => `
+          <button class="btn ${answered && selected === optionIndex ? "selected" : ""}"
+                  type="button"
+                  data-scenario="${scenario.id}"
+                  data-option="${optionIndex}">
+            ${option.text}
+          </button>
+        `).join("")}
+      </div>
+      <div class="feedback ${answered ? "show" : ""} ${answered && selectedOption.correct ? "good" : "bad"}">
+        ${answered ? selectedOption.feedback : ""}
+      </div>
+    `;
 
-   grid.appendChild(card);
- });
+    grid.appendChild(card);
+  });
 
- $$("#scenarioGrid button[data-scenario]").forEach(btn => {
-   btn.addEventListener("click", () => {
-     const id = btn.dataset.scenario;
-     const option = parseInt(btn.dataset.option, 10);
-     state.scenarios[id] = option;
-     saveState();
-     renderScenarios();
-     updateProgress();
-     updateFinalLock();
-   });
- });
-
- updateScenarioUI();
+  updateScenarioUI();
 }
 
-function scenarioStats(){
- const answered = SCENARIOS.filter(s => Number.isInteger(state.scenarios[s.id]));
- const correct = answered.filter(s => s.options[state.scenarios[s.id]].correct);
- const score = answered.length ? Math.round((correct.length / answered.length) * 100) : 0;
+document.addEventListener("click", function(e){
+  const btn = e.target.closest("button[data-scenario][data-option]");
+  if(!btn) return;
 
- return {
-   total: SCENARIOS.length,
-   answered: answered.length,
-   correct: correct.length,
-   score
- };
+  const id = btn.dataset.scenario;
+  const option = parseInt(btn.dataset.option, 10);
+
+  state.scenarios[id] = option;
+  state.badgeGenerated = false;
+  saveState();
+
+  renderScenarios();
+  updateProgress();
+  updateFinalLock();
+});
+
+function scenarioStats(){
+  const answered = SCENARIOS.filter(s => Number.isInteger(state.scenarios[s.id]));
+  const correct = answered.filter(s => s.options[state.scenarios[s.id]].correct);
+  const score = answered.length ? Math.round((correct.length / answered.length) * 100) : 0;
+
+  return {
+    total: SCENARIOS.length,
+    answered: answered.length,
+    correct: correct.length,
+    score
+  };
 }
 
 function updateScenarioUI(){
- const stats = scenarioStats();
- $("#scenarioAnswered").textContent = `${stats.answered}/${stats.total}`;
- $("#scenarioScore").textContent = `${stats.score}%`;
+  const stats = scenarioStats();
+  $("#scenarioAnswered").textContent = `${stats.answered}/${stats.total}`;
+  $("#scenarioScore").textContent = `${stats.score}%`;
 
- const ready = stats.answered === stats.total && stats.score >= 80;
- $("#scenarioReadiness").textContent = ready ? "Unlocked" : "Not ready yet";
- $("#scenarioReadiness").style.color = ready ? "var(--ok)" : "var(--muted)";
-
- $("#heroScenario").textContent = `${stats.answered}/${stats.total}`;
+  const ready = stats.answered === stats.total && stats.score >= 80;
+  $("#scenarioReadiness").textContent = ready ? "Unlocked" : "Not ready yet";
+  $("#scenarioReadiness").style.color = ready ? "var(--green)" : "var(--muted)";
+  $("#heroScenario").textContent = `${stats.answered}/${stats.total}`;
 }
 
 function reflectionComplete(key){
- return (state.reflections[key] || "").trim().length >= 12;
+  return (state.reflections[key] || "").trim().length >= 12;
 }
 
 function finalPlanComplete(){
- return ["planHabits","planSafety","planShortcuts","planFlint","planFocus"].every(reflectionComplete);
+  return ["planHabits","planSafety","planShortcuts","planFlint","planFocus"].every(reflectionComplete);
 }
 
 function finalReady(){
- const stats = scenarioStats();
- return stats.answered === stats.total && stats.score >= 80 && finalPlanComplete() && !!state.checks["final-commitment"];
+  const stats = scenarioStats();
+  return stats.answered === stats.total && stats.score >= 80 && finalPlanComplete() && !!state.checks["final-commitment"];
 }
 
 function updateFinalLock(){
- const stats = scenarioStats();
- const scenarioReady = stats.answered === stats.total && stats.score >= 80;
+  const stats = scenarioStats();
+  const scenarioReady = stats.answered === stats.total && stats.score >= 80;
 
- const finalContent = $("#finalContent");
- const finalLockMessage = $("#finalLockMessage");
- const generateBadge = $("#generateBadge");
- const commitment = $("#commitmentCheck");
+  const finalContent = $("#finalContent");
+  const finalLockMessage = $("#finalLockMessage");
+  const generateBadge = $("#generateBadge");
+  const commitment = $("#commitmentCheck");
 
- if(scenarioReady){
-   finalContent.classList.remove("final-lock");
-   commitment.disabled = false;
-   finalLockMessage.className = "callout";
-   finalLockMessage.innerHTML = "Final commitment unlocked. Complete your personal use plan and agreement to generate your badge.";
- }else{
-   finalContent.classList.add("final-lock");
-   commitment.disabled = true;
-   commitment.checked = false;
-   state.checks["final-commitment"] = false;
-   finalLockMessage.className = "challenge";
-   finalLockMessage.innerHTML = "Complete the judgement scenarios with at least 80% to unlock the final commitment.";
- }
+  if(scenarioReady){
+    finalContent.classList.remove("final-lock");
+    commitment.disabled = false;
+    finalLockMessage.className = "callout";
+    finalLockMessage.innerHTML = "Final commitment unlocked. Complete your personal use plan and agreement to generate your badge.";
+  }else{
+    finalContent.classList.add("final-lock");
+    commitment.disabled = true;
+    commitment.checked = false;
+    state.checks["final-commitment"] = false;
+    finalLockMessage.className = "challenge";
+    finalLockMessage.innerHTML = "Complete the judgement scenarios with at least 80% to unlock the final commitment.";
+  }
 
- generateBadge.disabled = !finalReady();
+  generateBadge.disabled = !finalReady();
 
- if(state.badgeGenerated && finalReady()){
-   $("#badgeArea").style.display = "block";
-   drawBadge();
- }
+  if(state.badgeGenerated && finalReady()){
+    $("#badgeArea").style.display = "block";
+    drawBadge();
+  }else if(!state.badgeGenerated){
+    $("#badgeArea").style.display = "none";
+  }
 
- $("#heroFinal").textContent = finalReady() ? "Ready" : scenarioReady ? "Plan needed" : "Locked";
+  $("#heroFinal").textContent = finalReady() ? "Ready" : scenarioReady ? "Plan needed" : "Locked";
 }
 
 function progressStats(){
- const checkboxes = $$("[data-check]").filter(cb => !cb.disabled);
- const checked = checkboxes.filter(cb => cb.checked);
+  const checkboxes = $$("[data-check]").filter(cb => !cb.disabled);
+  const checked = checkboxes.filter(cb => cb.checked);
 
- const reflectionKeys = [
-   "workflow","gesture","flint","safe","care","balance",
-   "planHabits","planSafety","planShortcuts","planFlint","planFocus"
- ];
- const reflectionDone = reflectionKeys.filter(reflectionComplete).length;
+  const reflectionKeys = [
+    "workflow","gesture","flint","safe","care","balance",
+    "planHabits","planSafety","planShortcuts","planFlint","planFocus"
+  ];
+  const reflectionDone = reflectionKeys.filter(reflectionComplete).length;
 
- const scenario = scenarioStats();
+  const scenario = scenarioStats();
 
- const total = checkboxes.length + reflectionKeys.length + scenario.total + 1;
- const done = checked.length + reflectionDone + scenario.answered + (state.badgeGenerated ? 1 : 0);
+  const total = checkboxes.length + reflectionKeys.length + scenario.total + 1;
+  const done = checked.length + reflectionDone + scenario.answered + (state.badgeGenerated ? 1 : 0);
 
- return {
-   total,
-   done,
-   pct: Math.round((done / Math.max(total, 1)) * 100)
- };
+  return {
+    total,
+    done,
+    pct: Math.round((done / Math.max(total, 1)) * 100)
+  };
 }
 
 function readinessLabel(pct){
- if(pct < 25) return "Getting Ready";
- if(pct < 50) return "Building Good Habits";
- if(pct < 75) return "Working Independently";
- if(pct < 100) return "Showing Good Judgement";
- return "Trusted Device User";
+  if(pct < 25) return "Getting Ready";
+  if(pct < 50) return "Building Good Habits";
+  if(pct < 75) return "Working Independently";
+  if(pct < 100) return "Showing Good Judgement";
+  return "Trusted Device User";
 }
 
 function updateProgress(){
- updateScenarioUI();
- updateShortcutCount();
+  updateScenarioUI();
+  updateShortcutCount();
 
- const stats = progressStats();
- $("#progressBar").style.inset = `0 ${100 - stats.pct}% 0 0`;
- $("#progressLabel").textContent = `${stats.pct}% complete`;
- $("#readinessStatus").textContent = readinessLabel(stats.pct);
- $("#heroProgress").textContent = `${stats.pct}%`;
+  const stats = progressStats();
+  $("#progressBar").style.width = `${stats.pct}%`;
+  $("#progressLabel").textContent = `${stats.pct}% complete`;
+  $("#readinessStatus").textContent = readinessLabel(stats.pct);
+  $("#heroProgress").textContent = `${stats.pct}%`;
 
- const status = $("#readinessStatus");
- status.className = "pill dark";
- if(stats.pct >= 75 && stats.pct < 100) status.className = "pill warn";
- if(stats.pct === 100) status.className = "pill ok";
+  const status = $("#readinessStatus");
+  status.className = "pill dark";
+  if(stats.pct >= 75 && stats.pct < 100) status.className = "pill warn";
+  if(stats.pct === 100) status.className = "pill ok";
+}
+
+function loadShortcutImage(){
+  const img = $("#shortcutImage");
+  const frame = $("#shortcutImageFrame");
+  const testList = $("#imageTestList");
+  if(!img || !frame) return;
+
+  let index = 0;
+  testList.innerHTML = IMAGE_CANDIDATES.map(path => `<li><code>${path}</code></li>`).join("");
+
+  function tryNext(){
+    if(index >= IMAGE_CANDIDATES.length){
+      frame.classList.add("missing-image");
+      return;
+    }
+
+    const candidate = IMAGE_CANDIDATES[index];
+    index++;
+
+    const probe = new Image();
+    probe.onload = () => {
+      img.src = candidate;
+      frame.classList.remove("missing-image");
+    };
+    probe.onerror = tryNext;
+    probe.src = candidate + "?v=" + Date.now();
+  }
+
+  tryNext();
 }
 
 function drawBadge(){
- const c = $("#badgeCanvas");
- const ctx = c.getContext("2d");
- const W = c.width;
- const H = c.height;
- const CX = W / 2;
- const CY = H / 2;
+  const c = $("#badgeCanvas");
+  const ctx = c.getContext("2d");
+  const W = c.width;
+  const H = c.height;
+  const CX = W / 2;
+  const CY = H / 2;
 
- ctx.clearRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H);
 
- const bg = ctx.createLinearGradient(0, 0, W, H);
- bg.addColorStop(0, "#e9f2ff");
- bg.addColorStop(.55, "#ffffff");
- bg.addColorStop(1, "#e7f9f0");
- ctx.fillStyle = bg;
- roundRect(ctx, 40, 40, W - 80, H - 80, 60, true, false);
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, "#e9f2ff");
+  bg.addColorStop(.55, "#ffffff");
+  bg.addColorStop(1, "#e7f9f0");
+  ctx.fillStyle = bg;
+  roundRect(ctx, 40, 40, W - 80, H - 80, 60, true, false);
 
- const ring = ctx.createRadialGradient(CX, CY, 80, CX, CY, 360);
- ring.addColorStop(0, "#f6e27a");
- ring.addColorStop(1, "#d4af37");
- ctx.fillStyle = ring;
- ctx.beginPath();
- ctx.arc(CX, CY, 330, 0, Math.PI * 2);
- ctx.fill();
+  const ring = ctx.createRadialGradient(CX, CY, 80, CX, CY, 360);
+  ring.addColorStop(0, "#f6e27a");
+  ring.addColorStop(1, "#d4af37");
+  ctx.fillStyle = ring;
+  ctx.beginPath();
+  ctx.arc(CX, CY, 330, 0, Math.PI * 2);
+  ctx.fill();
 
- ctx.fillStyle = "#fff";
- ctx.beginPath();
- ctx.arc(CX, CY, 255, 0, Math.PI * 2);
- ctx.fill();
+  ctx.fillStyle = "#fff";
+  ctx.beginPath();
+  ctx.arc(CX, CY, 255, 0, Math.PI * 2);
+  ctx.fill();
 
- ctx.fillStyle = "#0A2C66";
- ctx.font = "bold 48px Inter, Arial, sans-serif";
- center(ctx, "TRUSTED DEVICE USER", CX, CY - 80);
+  ctx.fillStyle = "#071B3A";
+  ctx.font = "bold 48px Arial, sans-serif";
+  center(ctx, "TRUSTED DEVICE USER", CX, CY - 80);
 
- ctx.fillStyle = "#3b2a82";
- ctx.font = "700 34px Inter, Arial, sans-serif";
- center(ctx, "MacBook Readiness Programme", CX, CY - 24);
+  ctx.fillStyle = "#0A66C2";
+  ctx.font = "700 34px Arial, sans-serif";
+  center(ctx, "MacBook Readiness Programme", CX, CY - 24);
 
- ctx.fillStyle = "#1b1f23";
- ctx.font = "500 24px Inter, Arial, sans-serif";
- center(ctx, "Purposeful · Responsible · Reflective", CX, CY + 32);
+  ctx.fillStyle = "#172033";
+  ctx.font = "500 24px Arial, sans-serif";
+  center(ctx, "Purposeful · Responsible · Reflective", CX, CY + 32);
 
- ctx.fillStyle = "#0A66C2";
- roundRect(ctx, CX - 230, CY + 110, 460, 76, 26, true, false);
+  ctx.fillStyle = "#0A66C2";
+  roundRect(ctx, CX - 230, CY + 110, 460, 76, 26, true, false);
 
- ctx.fillStyle = "#fff";
- ctx.font = "bold 32px Inter, Arial, sans-serif";
- center(ctx, "READY FOR LEARNING", CX, CY + 158);
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 32px Arial, sans-serif";
+  center(ctx, "READY FOR LEARNING", CX, CY + 158);
 
- ctx.fillStyle = "#5b6775";
- ctx.font = "500 20px Inter, Arial, sans-serif";
- center(ctx, "Generated locally on this device", CX, CY + 235);
+  ctx.fillStyle = "#667085";
+  ctx.font = "500 20px Arial, sans-serif";
+  center(ctx, "Generated locally on this device", CX, CY + 235);
 }
 
 function center(ctx, text, x, y){
- const width = ctx.measureText(text).width;
- ctx.fillText(text, x - width / 2, y);
+  const width = ctx.measureText(text).width;
+  ctx.fillText(text, x - width / 2, y);
 }
 
 function roundRect(ctx, x, y, w, h, r, fill=true, stroke=false){
- ctx.beginPath();
- ctx.moveTo(x + r, y);
- ctx.arcTo(x + w, y, x + w, y + h, r);
- ctx.arcTo(x + w, y + h, x, y + h, r);
- ctx.arcTo(x, y + h, x, y, r);
- ctx.arcTo(x, y, x + w, y, r);
- ctx.closePath();
- if(fill) ctx.fill();
- if(stroke) ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+  if(fill) ctx.fill();
+  if(stroke) ctx.stroke();
 }
 
 function readinessSummary(){
- const stats = scenarioStats();
- const shortcutList = $$('[data-limit-group="shortcuts"]')
-   .filter(b => b.checked)
-   .map(b => b.closest(".check").innerText.trim())
-   .join("\n- ");
+  const stats = scenarioStats();
+  const shortcutList = $$('[data-limit-group="shortcuts"]')
+    .filter(b => b.checked)
+    .map(b => b.closest(".check").innerText.trim())
+    .join("\n- ");
 
- return `
+  return `
 MacBook Readiness Summary
 
 Overall status: ${$("#readinessStatus").textContent}
@@ -1824,116 +1730,40 @@ Focus: ${state.reflections.planFocus || ""}
 }
 
 async function copySummary(){
- const text = readinessSummary();
- try{
-   await navigator.clipboard.writeText(text);
-   alert("Readiness summary copied.");
- }catch(e){
-   const temp = document.createElement("textarea");
-   temp.value = text;
-   document.body.appendChild(temp);
-   temp.select();
-   document.execCommand("copy");
-   temp.remove();
-   alert("Readiness summary copied.");
- }
+  const text = readinessSummary();
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("Readiness summary copied.");
+  }catch(e){
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+    alert("Readiness summary copied.");
+  }
 }
 
 function celebrate(){
- const holder = $("#confetti");
- holder.innerHTML = "";
- const colours = ["#0A66C2", "#2ea44f", "#d4af37", "#3b2a82", "#20b77a"];
+  const holder = $("#confetti");
+  holder.innerHTML = "";
+  const colours = ["#0A66C2", "#E51F32", "#d4af37", "#071B3A", "#238B45"];
 
- for(let i = 0; i < 60; i++){
-   const piece = document.createElement("span");
-   piece.style.left = Math.random() * 100 + "vw";
-   piece.style.background = colours[Math.floor(Math.random() * colours.length)];
-   piece.style.animationDelay = Math.random() * 250 + "ms";
-   piece.style.transform = `rotate(${Math.random() * 180}deg)`;
-   holder.appendChild(piece);
- }
+  for(let i = 0; i < 60; i++){
+    const piece = document.createElement("span");
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.background = colours[Math.floor(Math.random() * colours.length)];
+    piece.style.animationDelay = Math.random() * 250 + "ms";
+    piece.style.transform = `rotate(${Math.random() * 180}deg)`;
+    holder.appendChild(piece);
+  }
 
- setTimeout(() => holder.innerHTML = "", 1400);
+  setTimeout(() => holder.innerHTML = "", 1400);
 }
 
 document.addEventListener("DOMContentLoaded", init);
 </script>
-<script>
-/* ==========================
-  SIMPLE SCENARIO ENGINE FIX
-========================== */
-const SCENARIOS = [
- {
-   id: "charging",
-   question: "You arrive to class with 5% battery. What do you do?",
-   options: [
-     "Borrow a charger and continue learning",
-     "Do nothing and wait for instructions",
-     "Close the laptop and stop working"
-   ],
-   correct: 0,
-   feedback: [
-     "Correct — you are responsible for staying ready to learn.",
-     "Not ideal — you should take ownership.",
-     "Incorrect — learning should continue."
-   ]
- },
- {
-   id: "airdrop",
-   question: "A friend tries to AirDrop you a meme in class. What do you do?",
-   options: [
-     "Accept it and laugh",
-     "Ignore it and stay focused",
-     "Send one back"
-   ],
-   correct: 1,
-   feedback: [
-     "Incorrect — this distracts learning.",
-     "Correct — you stay focused.",
-     "Incorrect — you escalate distraction."
-   ]
- }
-];
-let scenarioState = {};
-/* Render cards */
-function renderScenarios(){
- const grid = document.getElementById("scenarioGrid");
- if(!grid) return;
- grid.innerHTML = "";
- SCENARIOS.forEach(s => {
-   const card = document.createElement("div");
-   card.className = "scenario-card";
-   card.innerHTML = `
-<h3>${s.question}</h3>
-<div class="scenario-options">
-       ${s.options.map((opt,i)=>`
-<button class="btn small"
-           data-scenario="${s.id}"
-           data-option="${i}">
-           ${opt}
-</button>
-       `).join("")}
-</div>
-<div class="feedback" id="fb-${s.id}"></div>
-   `;
-   grid.appendChild(card);
- });
-}
-/* Click handling */
-document.addEventListener("click", function(e){
- const btn = e.target.closest("button[data-scenario]");
- if(!btn) return;
- const id = btn.dataset.scenario;
- const option = parseInt(btn.dataset.option,10);
- const scenario = SCENARIOS.find(s => s.id === id);
- const feedbackEl = document.getElementById("fb-" + id);
- if(!scenario || !feedbackEl) return;
- const correct = option === scenario.correct;
- feedbackEl.className = "feedback show " + (correct ? "good" : "bad");
- feedbackEl.textContent = scenario.feedback[option];
-});
-/* Init */
-document.addEventListener("DOMContentLoaded", renderScenarios);
-</script>
+
 </body>
 </html>
