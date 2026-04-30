@@ -1440,6 +1440,7 @@ function init(){
 }
 
 function bindEvents(){
+ 
  document.addEventListener("change", (e) => {
    if(e.target.matches("[data-check]")){
      const key = e.target.dataset.check;
@@ -1857,6 +1858,82 @@ function celebrate(){
 
 document.addEventListener("DOMContentLoaded", init);
 </script>
-
+<script>
+/* ==========================
+  SIMPLE SCENARIO ENGINE FIX
+========================== */
+const SCENARIOS = [
+ {
+   id: "charging",
+   question: "You arrive to class with 5% battery. What do you do?",
+   options: [
+     "Borrow a charger and continue learning",
+     "Do nothing and wait for instructions",
+     "Close the laptop and stop working"
+   ],
+   correct: 0,
+   feedback: [
+     "Correct — you are responsible for staying ready to learn.",
+     "Not ideal — you should take ownership.",
+     "Incorrect — learning should continue."
+   ]
+ },
+ {
+   id: "airdrop",
+   question: "A friend tries to AirDrop you a meme in class. What do you do?",
+   options: [
+     "Accept it and laugh",
+     "Ignore it and stay focused",
+     "Send one back"
+   ],
+   correct: 1,
+   feedback: [
+     "Incorrect — this distracts learning.",
+     "Correct — you stay focused.",
+     "Incorrect — you escalate distraction."
+   ]
+ }
+];
+let scenarioState = {};
+/* Render cards */
+function renderScenarios(){
+ const grid = document.getElementById("scenarioGrid");
+ if(!grid) return;
+ grid.innerHTML = "";
+ SCENARIOS.forEach(s => {
+   const card = document.createElement("div");
+   card.className = "scenario-card";
+   card.innerHTML = `
+<h3>${s.question}</h3>
+<div class="scenario-options">
+       ${s.options.map((opt,i)=>`
+<button class="btn small"
+           data-scenario="${s.id}"
+           data-option="${i}">
+           ${opt}
+</button>
+       `).join("")}
+</div>
+<div class="feedback" id="fb-${s.id}"></div>
+   `;
+   grid.appendChild(card);
+ });
+}
+/* Click handling */
+document.addEventListener("click", function(e){
+ const btn = e.target.closest("button[data-scenario]");
+ if(!btn) return;
+ const id = btn.dataset.scenario;
+ const option = parseInt(btn.dataset.option,10);
+ const scenario = SCENARIOS.find(s => s.id === id);
+ const feedbackEl = document.getElementById("fb-" + id);
+ if(!scenario || !feedbackEl) return;
+ const correct = option === scenario.correct;
+ feedbackEl.className = "feedback show " + (correct ? "good" : "bad");
+ feedbackEl.textContent = scenario.feedback[option];
+});
+/* Init */
+document.addEventListener("DOMContentLoaded", renderScenarios);
+</script>
 </body>
 </html>
